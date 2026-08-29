@@ -21,6 +21,7 @@ import {
 } from "./model/board-config";
 import { DEFAULT_SETTINGS, mergeSettings, SettingsStore, TaskListSettings } from "./settings";
 import { closeAllPopovers } from "./ui/popover";
+import { TaskListSettingTab } from "./ui/settings-tab";
 import { BoardRenderer } from "./view/board-renderer";
 import {
   BOARD_FLAG,
@@ -31,13 +32,13 @@ import {
   markdownOverrides
 } from "./view/board-view";
 
-const TASKS_FOLDER = "Tasks";
-
 export default class TaskListPlugin extends Plugin implements SettingsStore {
   settings: TaskListSettings = { ...DEFAULT_SETTINGS, collapsed: {} };
 
   async onload(): Promise<void> {
     this.settings = mergeSettings(await this.loadData());
+
+    this.addSettingTab(new TaskListSettingTab(this));
 
     this.registerView(BOARD_VIEW, (leaf) => new BoardView(leaf, this));
 
@@ -104,7 +105,15 @@ export default class TaskListPlugin extends Plugin implements SettingsStore {
   private patchViewState(): void {
     const proto = WorkspaceLeaf.prototype;
     const original: (state: ViewState, eState?: unknown) => Promise<void> = proto.setViewState;
-    const redirect = (state: ViewState): ViewState => this.boardState(state);
+
+    // Every tab in Obsidian goes through here, so a throw would break the app itself.
+    const redirect = (state: ViewState): ViewState => {
+      try {
+        return this.boardState(state);
+      } catch {
+        return state;
+      }
+    };
 
     proto.setViewState = function (
       this: WorkspaceLeaf,
@@ -167,7 +176,7 @@ export default class TaskListPlugin extends Plugin implements SettingsStore {
     }
 
     context.addChild(
-      new BoardRenderer(element, this.app, this, config, context.sourcePath, () =>
+      new BoardRenderer(element, this.app, this, config, source, context.sourcePath, () =>
         context.getSectionInfo(element)
       )
     );
@@ -175,13 +184,14 @@ export default class TaskListPlugin extends Plugin implements SettingsStore {
 
   private async createBoard(folder: TFolder): Promise<TFile | null> {
     const base = "TaskList";
+    const tasks = this.settings.tasksFolder;
     const parent = folder.isRoot() ? "" : `${folder.path}/`;
 
     let suffix = "";
     let index = 1;
     while (
       this.app.vault.getAbstractFileByPath(`${parent}${base}${suffix}.md`) !== null ||
-      this.app.vault.getAbstractFileByPath(`${parent}${TASKS_FOLDER}${suffix}`) !== null
+      this.app.vault.getAbstractFileByPath(`${parent}${tasks}${suffix}`) !== null
     ) {
       index += 1;
       suffix = ` ${index}`;
@@ -190,7 +200,8 @@ export default class TaskListPlugin extends Plugin implements SettingsStore {
     const path = `${parent}${base}${suffix}.md`;
 
     const config: BoardConfig = defaultBoardConfig();
-    config.folder = `${parent}${TASKS_FOLDER}${suffix}`;
+    config.folder = `${parent}${tasks}${suffix}`;
+    config.moveFiles = this.settings.moveFiles;
 
     const body = [
       "---",

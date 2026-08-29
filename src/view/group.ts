@@ -1,6 +1,6 @@
 import { setIcon } from "obsidian";
 import { t } from "../i18n";
-import { textOn } from "../model/status";
+import { readable, textOn } from "../model/status";
 import { TaskGroup } from "../model/task";
 import { BoardHost } from "./board-host";
 import { DragController } from "./drag-controller";
@@ -33,7 +33,7 @@ function renderAddLine(parent: HTMLElement, host: BoardHost, group: TaskGroup): 
       return;
     }
 
-    // The input only stays open when the user asked for it (settings menu).
+    // Only stays open when the settings menu asked for it.
     if (!host.keepAdding()) host.pendingAdd = null;
     host.addTask(group, title);
   };
@@ -96,7 +96,7 @@ export function renderGroup(
   if (group.isUnassigned) {
     chip.addClass("is-unassigned");
     chip.style.borderColor = group.status.color;
-    chip.style.color = group.status.color;
+    chip.style.color = readable(group.status.color);
   } else {
     chip.style.background = group.status.color;
     chip.style.color = textOn(group.status.color);

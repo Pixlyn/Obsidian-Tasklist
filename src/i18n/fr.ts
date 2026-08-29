@@ -79,8 +79,7 @@ export const fr: Partial<Record<TranslationKey, string>> = {
   FIELD_NAME_REQUIRED: "Donnez un nom au champ.",
   DUPLICATE_FIELD: "« {name} » existe déjà.",
   REMOVE_FIELD_TITLE: "Retirer le champ",
-  REMOVE_FIELD_BODY:
-    "« {name} » et ses valeurs sont retirés de chaque tâche de cette liste.",
+  REMOVE_FIELD_BODY: "« {name} » et ses valeurs sont retirés de chaque tâche de cette liste.",
   FIELD_CLEAR: "Effacer",
   FIELD_TEXT: "Texte",
   FIELD_NUMBER: "Nombre",
@@ -96,5 +95,17 @@ export const fr: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "Créer « {name} »",
   REMOVE_TAG_TITLE: "Retirer l’étiquette",
   REMOVE_TAG_BODY: "« {name} » est utilisée par {count} tâche(s). La retirer aussi de celles-ci ?",
-  FAILED: "TaskList : {message}"
+  FAILED: "TaskList : {message}",
+  CONFLICT:
+    "Cette liste a été modifiée ailleurs, la modification a été abandonnée. La vue est à jour.",
+  SETTINGS_TASKS_FOLDER: "Nom du dossier des tâches",
+  SETTINGS_TASKS_FOLDER_DESC:
+    "Une nouvelle liste range ses tâches dans un dossier portant ce nom, à côté de la note de liste.",
+  SETTINGS_MOVE_FILES: "Déplacer les notes entre les dossiers de statut",
+  SETTINGS_MOVE_FILES_DESC:
+    "Changer le statut d’une tâche déplace aussi sa note dans le dossier de ce statut. Les nouvelles listes démarrent avec ce réglage.",
+  SETTINGS_OPEN_ON_CREATE: "Ouvrir les nouvelles tâches",
+  SETTINGS_OPEN_ON_CREATE_DESC: "Ouvrir la note dès qu’une tâche est créée.",
+  SETTINGS_CONFIRM_DELETE: "Confirmer avant de supprimer",
+  SETTINGS_CONFIRM_DELETE_DESC: "Demander d’abord quand plusieurs tâches sont mises à la corbeille."
 };

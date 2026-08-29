@@ -106,6 +106,7 @@ export class BoardView extends TextFileView {
       this.app,
       this.store,
       config,
+      source,
       path,
       () => null,
       (data) => {

@@ -43,7 +43,7 @@ export class FieldModal extends Modal {
       if (event.key === "Enter") this.save();
     });
 
-    // The type is fixed once values exist, so it is only picked when new.
+    // The type is fixed once values exist.
     if (this.edited === null) {
       const list = content.createDiv({ cls: "tl-field-types" });
       const draw = (): void => {

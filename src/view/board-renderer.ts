@@ -16,6 +16,7 @@ import {
   setField,
   setPriority,
   setStatus,
+  setStatusBatch,
   setTags,
   trashTasks,
   writeOrder
@@ -29,7 +30,12 @@ import {
 import { migrateStatuses } from "../core/status-migration";
 import { migrateTags } from "../core/tag-migration";
 import { t } from "../i18n";
-import { allStatuses, BoardConfig, visibleColumns } from "../model/board-config";
+import {
+  allStatuses,
+  BoardConfig,
+  serializeBoardConfig,
+  visibleColumns
+} from "../model/board-config";
 import {
   clampColumnWidth,
   COLUMN_VARIABLE,
@@ -74,6 +80,7 @@ export class BoardRenderer extends MarkdownRenderChild implements BoardHost {
     readonly app: App,
     private readonly store: SettingsStore,
     readonly config: BoardConfig,
+    private baseline: string,
     boardPath: string,
     private readonly locate: () => MarkdownSectionInformation | null,
     private readonly onWrite: (data: string) => void = () => undefined
@@ -83,7 +90,14 @@ export class BoardRenderer extends MarkdownRenderChild implements BoardHost {
   }
 
   private async write(): Promise<void> {
-    const data = await writeBoardConfig(this.app, this.boardPath, this.locate(), this.config);
+    const data = await writeBoardConfig(
+      this.app,
+      this.boardPath,
+      this.locate(),
+      this.config,
+      this.baseline
+    );
+    this.baseline = serializeBoardConfig(this.config).replace(/\n$/, "");
     this.onWrite(data);
   }
 
@@ -204,14 +218,28 @@ export class BoardRenderer extends MarkdownRenderChild implements BoardHost {
     return path.startsWith(`${this.config.folder}/`);
   }
 
+  // The list note usually sits beside its task folder, not inside it.
   private affects(file: TAbstractFile): boolean {
-    return this.isInside(file.path);
+    return file.path === this.boardPath || this.isInside(file.path);
   }
 
   private render(): void {
+    try {
+      this.draw();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      this.containerEl.empty();
+      this.containerEl.createDiv({ cls: "tl-board" }).createDiv({
+        cls: "tl-error",
+        text: t("FAILED", { message })
+      });
+    }
+  }
+
+  private draw(): void {
     this.containerEl.empty();
     const root = this.containerEl.createDiv({ cls: "tl-board" });
-    // Saved widths are re-fitted: a narrow pane must not squeeze out the name.
+    // Re-fitted: a narrow pane must not squeeze out the name.
     const available = root.clientWidth;
     const count = visibleColumns(this.config).filter(isSizable).length;
     const saved = this.columnWidth();
@@ -365,11 +393,7 @@ export class BoardRenderer extends MarkdownRenderChild implements BoardHost {
     const files = tasks.map((task) => task.file);
     this.selection.clear();
 
-    this.run(async () => {
-      for (const file of files) {
-        await setStatus(this.app, this.config, file, status.name);
-      }
-    });
+    this.run(() => setStatusBatch(this.app, this.config, files, status.name));
   }
 
   changePriority(task: TaskItem, priority: PriorityKey | null): void {
@@ -383,7 +407,7 @@ export class BoardRenderer extends MarkdownRenderChild implements BoardHost {
   changeTags(task: TaskItem, tags: string[]): void {
     task.tags = [...tags];
 
-    // Tags typed into a row become part of the list definition as well.
+    // A tag typed into a row joins the list definition too.
     const fresh = tags.filter((name) => !this.config.tags.some((tag) => tag.name === name));
     for (const name of fresh) {
       const color = TAG_PALETTE[this.config.tags.length % TAG_PALETTE.length];

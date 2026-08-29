@@ -91,5 +91,16 @@ export const ar: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "إنشاء «{name}»",
   REMOVE_TAG_TITLE: "إزالة الوسم",
   REMOVE_TAG_BODY: "«{name}» مستخدم في {count} مهمة. هل تُزيله منها أيضًا؟",
-  FAILED: "TaskList: {message}"
+  FAILED: "TaskList: {message}",
+  CONFLICT: "تغيّرت هذه القائمة في مكان آخر، لذا أُلغي التعديل. العرض محدَّث الآن.",
+  SETTINGS_TASKS_FOLDER: "اسم مجلد المهام",
+  SETTINGS_TASKS_FOLDER_DESC:
+    "تحفظ القائمة الجديدة مهامها في مجلد بهذا الاسم بجوار ملاحظة القائمة.",
+  SETTINGS_MOVE_FILES: "نقل الملاحظات بين مجلدات الحالات",
+  SETTINGS_MOVE_FILES_DESC:
+    "تغيير حالة المهمة ينقل ملاحظتها أيضًا إلى مجلد تلك الحالة. تبدأ القوائم الجديدة بهذا الإعداد.",
+  SETTINGS_OPEN_ON_CREATE: "فتح المهام الجديدة",
+  SETTINGS_OPEN_ON_CREATE_DESC: "افتح الملاحظة فور إنشاء المهمة.",
+  SETTINGS_CONFIRM_DELETE: "التأكيد قبل الحذف",
+  SETTINGS_CONFIRM_DELETE_DESC: "اسأل أولًا عند نقل عدة مهام إلى سلة المهملات."
 };

@@ -5,7 +5,7 @@ import { ColumnKey, fieldOf } from "../model/columns";
 import { formatDue, isDueToday, isOverdue } from "../model/due-date";
 import { BoardField, FIELD_TYPE_ICONS, findField } from "../model/field";
 import { findPriority } from "../model/priority";
-import { findStatus, Status, textOn } from "../model/status";
+import { findStatus, readable, Status, textOn } from "../model/status";
 import { findTag } from "../model/tag";
 import { TaskItem } from "../model/task";
 import { openDueEditor } from "../ui/date-field";
@@ -62,7 +62,7 @@ function renderPriority(row: HTMLElement, host: BoardHost, task: TaskItem): void
   if (priority === null) button.addClass("is-empty");
 
   setIcon(button, "flag");
-  if (priority !== null) button.style.setProperty("--tl-flag-color", priority.color);
+  if (priority !== null) button.style.setProperty("--tl-flag-color", readable(priority.color));
   button.setAttribute("aria-label", priority === null ? t("PRIORITY") : t(priority.label));
 
   button.addEventListener("click", (event) => {
@@ -80,7 +80,7 @@ function renderTags(row: HTMLElement, host: BoardHost, task: TaskItem): void {
     button.addClass("is-empty");
     setIcon(button, "tag");
   } else {
-    // Only the first tag is spelled out; the rest live behind a counter.
+    // Only the first tag is spelled out; a counter holds the rest.
     const [first, ...rest] = task.tags;
     const tag = findTag(host.config.tags, first);
 
@@ -149,7 +149,7 @@ function renderField(
   if (field.type === "toggle") {
     const on = value === "true";
 
-    // Obsidian's own switch markup, so it matches the settings toggles.
+    // Obsidian's own switch markup, to match the settings toggles.
     const toggle = box.createDiv({ cls: "checkbox-container tl-field-toggle" });
     if (on) toggle.addClass("is-enabled");
     toggle.setAttribute("aria-label", field.name);

@@ -43,7 +43,8 @@ export async function writeBoardConfig(
   app: App,
   path: string,
   section: MarkdownSectionInformation | null,
-  config: BoardConfig
+  config: BoardConfig,
+  expected: string | null = null
 ): Promise<string> {
   const file = app.vault.getAbstractFileByPath(path);
   if (!(file instanceof TFile)) throw new Error(t("BLOCK_MISSING", { file: path }));
@@ -57,6 +58,18 @@ export async function writeBoardConfig(
     if (target === null) throw new Error(t("BLOCK_MISSING", { file: path }));
 
     const [start, end] = target;
+
+    // The write replaces the whole block, so a moved-on block would lose the other edit.
+    if (
+      expected !== null &&
+      lines
+        .slice(start + 1, end)
+        .join("\n")
+        .trim() !== expected.trim()
+    ) {
+      throw new Error(t("CONFLICT"));
+    }
+
     lines.splice(start + 1, end - start - 1, ...body.split("\n"));
     return lines.join("\n");
   });

@@ -1,6 +1,7 @@
 import { setIcon } from "obsidian";
 import { t } from "../i18n";
 import { PRIORITIES, PriorityKey } from "../model/priority";
+import { readable } from "../model/status";
 import { openPopover, placePopover } from "./popover";
 
 export function openPriorityMenu(
@@ -16,7 +17,7 @@ export function openPriorityMenu(
 
     const icon = item.createSpan({ cls: "tl-menu-flag" });
     setIcon(icon, color === null ? "flag-off" : "flag");
-    icon.style.color = color ?? "var(--text-faint)";
+    icon.style.color = color === null ? "var(--text-faint)" : readable(color);
 
     item.createSpan({ text: label });
 

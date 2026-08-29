@@ -94,5 +94,17 @@ export const it: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "Crea «{name}»",
   REMOVE_TAG_TITLE: "Rimuovi tag",
   REMOVE_TAG_BODY: "«{name}» è usato da {count} attività. Rimuoverlo anche da quelle?",
-  FAILED: "TaskList: {message}"
+  FAILED: "TaskList: {message}",
+  CONFLICT:
+    "Questo elenco è cambiato altrove, quindi la modifica è stata scartata. La vista è aggiornata.",
+  SETTINGS_TASKS_FOLDER: "Nome della cartella delle attività",
+  SETTINGS_TASKS_FOLDER_DESC:
+    "Un nuovo elenco tiene le sue attività in una cartella con questo nome, accanto alla nota dell’elenco.",
+  SETTINGS_MOVE_FILES: "Sposta le note tra le cartelle di stato",
+  SETTINGS_MOVE_FILES_DESC:
+    "Cambiare lo stato di un’attività sposta anche la sua nota nella cartella di quello stato. I nuovi elenchi partono con questa impostazione.",
+  SETTINGS_OPEN_ON_CREATE: "Apri le nuove attività",
+  SETTINGS_OPEN_ON_CREATE_DESC: "Apri la nota appena l’attività viene creata.",
+  SETTINGS_CONFIRM_DELETE: "Conferma prima di eliminare",
+  SETTINGS_CONFIRM_DELETE_DESC: "Chiedi prima quando più attività finiscono nel cestino."
 };

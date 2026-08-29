@@ -30,7 +30,7 @@ export function isFieldType(value: string): value is FieldType {
   return FIELD_TYPES.some((type) => type === value);
 }
 
-// The key becomes a frontmatter property, so it stays plain and stable.
+// The key becomes a frontmatter property, so it stays plain.
 export function fieldKeyFor(name: string): string {
   return name
     .trim()

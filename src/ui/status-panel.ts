@@ -1,7 +1,7 @@
 import { App, Notice, setIcon } from "obsidian";
 import { StatusMigration, StatusRemoval, StatusRename } from "../core/status-migration";
 import { t } from "../i18n";
-import { Status, STATUS_PALETTE, textOn } from "../model/status";
+import { readable, Status, STATUS_PALETTE, textOn } from "../model/status";
 import { openColorPopover } from "./color-popover";
 import { StatusRemoveModal } from "./status-remove-modal";
 
@@ -104,7 +104,7 @@ export class StatusPanel {
 
       if (entry.unassigned) {
         chip.style.borderColor = color;
-        chip.style.color = color;
+        chip.style.color = readable(color);
         return;
       }
       chip.style.background = color;

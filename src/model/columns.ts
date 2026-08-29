@@ -51,7 +51,7 @@ export interface RowEditResult {
   columns: ColumnKey[];
   hidden: ColumnKey[];
   fields: BoardField[];
-  // Fields the user deleted: their property leaves the notes as well.
+  // Deleting a field strips its property from the notes too.
   removed: string[];
 }
 
@@ -81,16 +81,14 @@ export function clampColumnWidth(width: number): number {
   return Math.round(Math.min(Math.max(width, MIN_COLUMN_WIDTH), MAX_COLUMN_WIDTH));
 }
 
-// The columns split the same budget, so the ceiling drops as more of them
-// come on and the name column always keeps its share.
+// More columns, lower ceiling: the name column always keeps its share.
 export function fitColumnWidth(width: number, count: number, available: number): number {
   const room = count > 0 ? (available * NAME_SHARE) / count : MAX_COLUMN_WIDTH;
   const limit = Math.max(MIN_COLUMN_WIDTH, Math.min(MAX_COLUMN_WIDTH, room));
   return clampColumnWidth(Math.min(width, limit));
 }
 
-// Keeps a stored order usable: columns of deleted fields drop out, missing
-// built-ins and freshly added fields come back at the end.
+// Rescues a stored order after fields come and go.
 export function normalizeColumns(order: ColumnKey[], fields: BoardField[]): ColumnKey[] {
   const known = fields.map((field) => fieldColumn(field.key));
 

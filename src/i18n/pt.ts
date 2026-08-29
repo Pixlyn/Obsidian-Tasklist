@@ -58,8 +58,7 @@ export const pt: Partial<Record<TranslationKey, string>> = {
   BOARD_SETTINGS_INTRO:
     "Estas preferências valem para todas as listas. As alterações são salvas na hora.",
   KEEP_ADDING: "Continuar adicionando após Enter",
-  KEEP_ADDING_DESC:
-    "Deixe o campo “+ Tarefa” aberto após salvar, para digitar a próxima tarefa.",
+  KEEP_ADDING_DESC: "Deixe o campo “+ Tarefa” aberto após salvar, para digitar a próxima tarefa.",
   MANAGE_BOARD: "Editar lista",
   MANAGE_ROW: "Editar linha",
   ROW_HINT:
@@ -95,5 +94,17 @@ export const pt: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "Criar “{name}”",
   REMOVE_TAG_TITLE: "Remover etiqueta",
   REMOVE_TAG_BODY: "“{name}” é usada por {count} tarefa(s). Remover delas também?",
-  FAILED: "TaskList: {message}"
+  FAILED: "TaskList: {message}",
+  CONFLICT:
+    "Esta lista mudou em outro lugar, então a edição foi descartada. A visualização já está atualizada.",
+  SETTINGS_TASKS_FOLDER: "Nome da pasta de tarefas",
+  SETTINGS_TASKS_FOLDER_DESC:
+    "Uma nova lista guarda suas tarefas numa pasta com este nome, ao lado da nota da lista.",
+  SETTINGS_MOVE_FILES: "Mover notas entre as pastas de status",
+  SETTINGS_MOVE_FILES_DESC:
+    "Mudar o status de uma tarefa também move a nota dela para a pasta daquele status. Listas novas começam com esta opção.",
+  SETTINGS_OPEN_ON_CREATE: "Abrir novas tarefas",
+  SETTINGS_OPEN_ON_CREATE_DESC: "Abrir a nota assim que a tarefa for criada.",
+  SETTINGS_CONFIRM_DELETE: "Confirmar antes de excluir",
+  SETTINGS_CONFIRM_DELETE_DESC: "Perguntar antes quando várias tarefas vão para a lixeira."
 };

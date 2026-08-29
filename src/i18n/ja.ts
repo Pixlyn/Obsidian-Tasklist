@@ -57,7 +57,8 @@ export const ja: Partial<Record<TranslationKey, string>> = {
   BOARD_SETTINGS: "設定",
   BOARD_SETTINGS_INTRO: "これらの設定はすべてのリストに適用され、変更は即座に保存されます。",
   KEEP_ADDING: "Enter の後も追加を続ける",
-  KEEP_ADDING_DESC: "保存後も「+ タスク」の入力欄を開いたままにし、次のタスクを続けて入力できます。",
+  KEEP_ADDING_DESC:
+    "保存後も「+ タスク」の入力欄を開いたままにし、次のタスクを続けて入力できます。",
   MANAGE_BOARD: "リストを編集",
   MANAGE_ROW: "行を編集",
   ROW_HINT: "ドラッグで並べ替えできます。目のアイコンで列を非表示に。点と名前は常に行を開きます。",
@@ -91,5 +92,16 @@ export const ja: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "「{name}」を作成",
   REMOVE_TAG_TITLE: "タグを削除",
   REMOVE_TAG_BODY: "「{name}」は {count} 件のタスクで使われています。それらからも削除しますか？",
-  FAILED: "TaskList: {message}"
+  FAILED: "TaskList: {message}",
+  CONFLICT: "このリストは別の場所で変更されたため、編集は破棄されました。表示は最新の状態です。",
+  SETTINGS_TASKS_FOLDER: "タスクフォルダ名",
+  SETTINGS_TASKS_FOLDER_DESC:
+    "新しいリストは、リストノートの隣にあるこの名前のフォルダにタスクを保存します。",
+  SETTINGS_MOVE_FILES: "ステータスのフォルダ間でノートを移動",
+  SETTINGS_MOVE_FILES_DESC:
+    "タスクのステータスを変更すると、そのノートも該当ステータスのフォルダへ移動します。新しいリストはこの設定で始まります。",
+  SETTINGS_OPEN_ON_CREATE: "新しいタスクを開く",
+  SETTINGS_OPEN_ON_CREATE_DESC: "タスクを作成したらすぐにノートを開きます。",
+  SETTINGS_CONFIRM_DELETE: "削除前に確認",
+  SETTINGS_CONFIRM_DELETE_DESC: "複数のタスクをゴミ箱に移動するときは先に確認します。"
 };

@@ -55,7 +55,8 @@ export const tr: Partial<Record<TranslationKey, string>> = {
   COLUMN_NAME: "Ad",
   MORE_TAGS: "+{count}",
   BOARD_SETTINGS: "Ayarlar",
-  BOARD_SETTINGS_INTRO: "Bu tercihler tüm listeler için geçerlidir. Değişiklikler hemen kaydedilir.",
+  BOARD_SETTINGS_INTRO:
+    "Bu tercihler tüm listeler için geçerlidir. Değişiklikler hemen kaydedilir.",
   KEEP_ADDING: "Enter'dan sonra eklemeye devam et",
   KEEP_ADDING_DESC:
     "Kaydettikten sonra “+ Görev” alanı açık kalsın, böylece sıradakini hemen yazabilirsin.",
@@ -92,5 +93,16 @@ export const tr: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "“{name}” oluştur",
   REMOVE_TAG_TITLE: "Etiketi kaldır",
   REMOVE_TAG_BODY: "“{name}” {count} görevde kullanılıyor. Onlardan da kaldırılsın mı?",
-  FAILED: "TaskList: {message}"
+  FAILED: "TaskList: {message}",
+  CONFLICT: "Bu liste başka yerde değişti, düzenleme uygulanmadı. Görünüm güncellendi.",
+  SETTINGS_TASKS_FOLDER: "Görev klasörü adı",
+  SETTINGS_TASKS_FOLDER_DESC:
+    "Yeni liste, görevlerini liste notunun yanında bu adda bir klasörde tutar.",
+  SETTINGS_MOVE_FILES: "Notları durum klasörleri arasında taşı",
+  SETTINGS_MOVE_FILES_DESC:
+    "Görevin durumu değişince notu da o durumun klasörüne taşınır. Yeni listeler bu ayarla başlar.",
+  SETTINGS_OPEN_ON_CREATE: "Yeni görevleri aç",
+  SETTINGS_OPEN_ON_CREATE_DESC: "Görev oluşturulur oluşturulmaz notu aç.",
+  SETTINGS_CONFIRM_DELETE: "Silmeden önce onayla",
+  SETTINGS_CONFIRM_DELETE_DESC: "Birden çok görev çöpe taşınırken önce sor."
 };

@@ -5,6 +5,21 @@ import { BoardField } from "../model/field";
 import { PriorityKey } from "../model/priority";
 import { ensureFolder, folderForStatus, freePath, sanitizeName } from "./folder-sync";
 
+// One unreadable note must not hold back the rest of the batch.
+async function eachFile(files: TFile[], work: (file: TFile) => Promise<void>): Promise<void> {
+  let failure: unknown = null;
+
+  for (const file of files) {
+    try {
+      await work(file);
+    } catch (error) {
+      failure ??= error;
+    }
+  }
+
+  if (failure !== null) throw failure;
+}
+
 function projectOf(config: BoardConfig): string {
   const segments = config.folder.split("/").filter((segment) => segment.length > 0);
   return segments.length === 0 ? "" : segments[segments.length - 1];
@@ -27,6 +42,15 @@ export async function setStatus(
 
   await ensureFolder(app.vault, folder);
   await app.fileManager.renameFile(file, freePath(app.vault, folder, file.basename));
+}
+
+export async function setStatusBatch(
+  app: App,
+  config: BoardConfig,
+  files: TFile[],
+  statusName: string
+): Promise<void> {
+  await eachFile(files, (file) => setStatus(app, config, file, statusName));
 }
 
 export async function setPriority(
@@ -74,20 +98,21 @@ export async function setField(
 export async function clearFields(app: App, files: TFile[], keys: string[]): Promise<void> {
   if (keys.length === 0) return;
 
-  for (const file of files) {
-    await app.fileManager.processFrontMatter(file, (frontmatter: Record<string, unknown>) => {
+  await eachFile(files, (file) =>
+    app.fileManager.processFrontMatter(file, (frontmatter: Record<string, unknown>) => {
       for (const key of keys) delete frontmatter[key];
-    });
-  }
+    })
+  );
 }
 
 export async function writeOrder(app: App, files: TFile[]): Promise<void> {
-  for (let index = 0; index < files.length; index += 1) {
-    const file = files[index];
-    await app.fileManager.processFrontMatter(file, (frontmatter: Record<string, unknown>) => {
-      frontmatter["order"] = index;
-    });
-  }
+  const order = new Map(files.map((file, index) => [file.path, index]));
+
+  await eachFile(files, (file) =>
+    app.fileManager.processFrontMatter(file, (frontmatter: Record<string, unknown>) => {
+      frontmatter["order"] = order.get(file.path) ?? 0;
+    })
+  );
 }
 
 export async function createTask(
@@ -112,7 +137,5 @@ export async function createTask(
 }
 
 export async function trashTasks(app: App, files: TFile[]): Promise<void> {
-  for (const file of files) {
-    await app.fileManager.trashFile(file);
-  }
+  await eachFile(files, (file) => app.fileManager.trashFile(file));
 }

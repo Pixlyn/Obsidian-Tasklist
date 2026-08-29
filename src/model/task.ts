@@ -13,7 +13,7 @@ export interface TaskItem {
   due: string;
   tags: string[];
   created: string;
-  // Values of the list's own fields, keyed by field key; "" means empty.
+  // Keyed by field key; "" means empty.
   fields: Record<string, string>;
 }
 

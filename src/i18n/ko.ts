@@ -91,5 +91,15 @@ export const ko: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "“{name}” 만들기",
   REMOVE_TAG_TITLE: "태그 제거",
   REMOVE_TAG_BODY: "“{name}”은(는) 작업 {count}개에서 사용 중입니다. 거기서도 제거할까요?",
-  FAILED: "TaskList: {message}"
+  FAILED: "TaskList: {message}",
+  CONFLICT: "이 목록이 다른 곳에서 바뀌어 편집이 취소되었습니다. 화면은 최신 상태입니다.",
+  SETTINGS_TASKS_FOLDER: "작업 폴더 이름",
+  SETTINGS_TASKS_FOLDER_DESC: "새 목록은 목록 노트 옆에 이 이름의 폴더를 만들어 작업을 보관합니다.",
+  SETTINGS_MOVE_FILES: "상태 폴더 사이로 노트 이동",
+  SETTINGS_MOVE_FILES_DESC:
+    "작업의 상태를 바꾸면 노트도 해당 상태의 폴더로 옮겨집니다. 새 목록은 이 설정으로 시작합니다.",
+  SETTINGS_OPEN_ON_CREATE: "새 작업 열기",
+  SETTINGS_OPEN_ON_CREATE_DESC: "작업을 만들면 바로 노트를 엽니다.",
+  SETTINGS_CONFIRM_DELETE: "삭제 전 확인",
+  SETTINGS_CONFIRM_DELETE_DESC: "여러 작업을 휴지통으로 옮길 때 먼저 확인합니다."
 };

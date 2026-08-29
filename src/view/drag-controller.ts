@@ -88,7 +88,7 @@ export class DragController {
   }
 
   private startScrolling(element: HTMLElement): void {
-    // In the full tab the frame scrolls; in a note it is the editor's scroller.
+    // A full tab scrolls the frame; a note scrolls the editor.
     this.scroller = element.closest<HTMLElement>(
       ".tl-view .tl-frame, .markdown-preview-view, .cm-scroller"
     );

@@ -27,9 +27,7 @@ function attachResize(
   host: BoardHost,
   grip: HTMLElement,
   side: 1 | -1,
-  // How many columns sit between this edge and the end of the row: they all
-  // move with it, so the shared width must grow that much slower to keep the
-  // divider under the pointer.
+  // Columns to the right of this edge move with it, so the delta is split by them.
   weight: number
 ): void {
   grip.addEventListener("pointerdown", (event) => {
@@ -87,7 +85,6 @@ function renderColumn(
       : (findField(host.config.fields, field ?? "")?.name ?? "");
   const column: Column = { cell, key, label };
 
-  // The status dot needs no heading; it just holds the column's place.
   if (key !== "status") cell.createSpan({ cls: "tl-col-label", text: column.label });
   if (!isSizable(key)) return;
 

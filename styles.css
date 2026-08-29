@@ -235,7 +235,7 @@
 .tl-board .tl-col-label {
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: -0.04em;
+  margin-inline-end: -0.04em;
 }
 
 /* Every column but the title shares one width. */
@@ -263,11 +263,11 @@
 }
 
 .tl-board .tl-col-grip.is-start {
-  left: -9px;
+  inset-inline-start: -9px;
 }
 
 .tl-board .tl-col-grip.is-end {
-  right: -9px;
+  inset-inline-end: -9px;
 }
 
 .tl-board .tl-col-grip::after {
@@ -275,7 +275,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 8px;
+  inset-inline-start: 8px;
   width: 1px;
   background: transparent;
   transition:
@@ -310,7 +310,7 @@
   cursor: text;
   border-radius: 5px;
   padding: 2px 6px;
-  margin-left: -6px;
+  margin-inline-start: -6px;
   display: inline-block;
 }
 
@@ -418,7 +418,7 @@
   cursor: text;
   border-radius: 5px;
   padding: 2px 6px;
-  margin-left: -6px;
+  margin-inline-start: -6px;
 }
 
 .tl-board .tl-title:hover {
@@ -439,7 +439,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 .tl-board .tl-title-actions .tl-icon-only {
@@ -475,7 +475,7 @@
   justify-content: center;
   width: 26px;
   height: 26px;
-  margin-left: -4px;
+  margin-inline-start: -4px;
   color: var(--text-muted);
   cursor: pointer;
   user-select: none;
@@ -510,7 +510,7 @@
 }
 
 .tl-board .tl-check-all {
-  margin-left: auto;
+  margin-inline-start: auto;
   opacity: 0;
   transition: opacity 0.12s;
 }
@@ -974,7 +974,7 @@
 }
 
 .tl-menu-item.is-current .tl-menu-mark {
-  margin-left: auto;
+  margin-inline-start: auto;
   color: var(--text-muted);
 }
 
@@ -1046,7 +1046,7 @@
 .tl-board .tl-toolbar-label {
   font-size: 13px;
   font-weight: 600;
-  margin-right: auto;
+  margin-inline-end: auto;
 }
 
 .tl-board .tl-btn {
@@ -1262,7 +1262,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 .tl-status-modal .tl-icon-btn {
@@ -1291,7 +1291,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-left: auto;
+  margin-inline-start: auto;
   font-size: 12px;
   padding: 5px 12px;
   border-radius: 5px;

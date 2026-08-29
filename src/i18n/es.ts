@@ -95,5 +95,17 @@ export const es: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "Crear «{name}»",
   REMOVE_TAG_TITLE: "Quitar etiqueta",
   REMOVE_TAG_BODY: "«{name}» la usan {count} tarea(s). ¿Quitarla también de ellas?",
-  FAILED: "TaskList: {message}"
+  FAILED: "TaskList: {message}",
+  CONFLICT:
+    "Esta lista cambió en otro sitio, así que se descartó la edición. La vista ya está al día.",
+  SETTINGS_TASKS_FOLDER: "Nombre de la carpeta de tareas",
+  SETTINGS_TASKS_FOLDER_DESC:
+    "Una lista nueva guarda sus tareas en una carpeta con este nombre, junto a la nota de la lista.",
+  SETTINGS_MOVE_FILES: "Mover notas entre carpetas de estado",
+  SETTINGS_MOVE_FILES_DESC:
+    "Cambiar el estado de una tarea también mueve su nota a la carpeta de ese estado. Las listas nuevas empiezan con este ajuste.",
+  SETTINGS_OPEN_ON_CREATE: "Abrir tareas nuevas",
+  SETTINGS_OPEN_ON_CREATE_DESC: "Abrir la nota en cuanto se crea una tarea.",
+  SETTINGS_CONFIRM_DELETE: "Confirmar antes de eliminar",
+  SETTINGS_CONFIRM_DELETE_DESC: "Preguntar primero cuando varias tareas van a la papelera."
 };

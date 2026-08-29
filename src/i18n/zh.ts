@@ -91,5 +91,15 @@ export const zh: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "创建“{name}”",
   REMOVE_TAG_TITLE: "移除标签",
   REMOVE_TAG_BODY: "“{name}”被 {count} 个任务使用。也从这些任务中移除吗？",
-  FAILED: "TaskList：{message}"
+  FAILED: "TaskList：{message}",
+  CONFLICT: "该列表已在别处被修改，因此本次编辑被放弃。视图已刷新到最新状态。",
+  SETTINGS_TASKS_FOLDER: "任务文件夹名称",
+  SETTINGS_TASKS_FOLDER_DESC: "新列表会把任务放在列表笔记旁边一个以此命名的文件夹里。",
+  SETTINGS_MOVE_FILES: "在状态文件夹之间移动笔记",
+  SETTINGS_MOVE_FILES_DESC:
+    "更改任务状态时，其笔记也会移动到该状态的文件夹。新列表以此设置作为默认值。",
+  SETTINGS_OPEN_ON_CREATE: "打开新建的任务",
+  SETTINGS_OPEN_ON_CREATE_DESC: "任务创建后立即打开其笔记。",
+  SETTINGS_CONFIRM_DELETE: "删除前确认",
+  SETTINGS_CONFIRM_DELETE_DESC: "将多个任务移到回收站时先询问。"
 };

@@ -90,7 +90,19 @@ export const en = {
   CREATE_TAG: "Create “{name}”",
   REMOVE_TAG_TITLE: "Remove tag",
   REMOVE_TAG_BODY: "“{name}” is used by {count} task(s). Remove it from them as well?",
-  FAILED: "TaskList: {message}"
+  FAILED: "TaskList: {message}",
+  CONFLICT:
+    "This list changed somewhere else, so the edit was dropped. The view is up to date now.",
+  SETTINGS_TASKS_FOLDER: "Task folder name",
+  SETTINGS_TASKS_FOLDER_DESC:
+    "A new list keeps its tasks in a folder with this name, beside the list note.",
+  SETTINGS_MOVE_FILES: "Move notes between status folders",
+  SETTINGS_MOVE_FILES_DESC:
+    "Changing a task's status also moves its note into that status's folder. New lists start with this setting.",
+  SETTINGS_OPEN_ON_CREATE: "Open new tasks",
+  SETTINGS_OPEN_ON_CREATE_DESC: "Open the note as soon as a task is created.",
+  SETTINGS_CONFIRM_DELETE: "Confirm before deleting",
+  SETTINGS_CONFIRM_DELETE_DESC: "Ask first when several tasks are moved to the trash."
 };
 
 export type TranslationKey = keyof typeof en;

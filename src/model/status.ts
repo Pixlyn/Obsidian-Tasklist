@@ -41,6 +41,11 @@ export function textOn(hex: string): string {
   return luminance > 0.6 ? "#0b0b0b" : "#f2f2f2";
 }
 
+// Mixing toward --text-normal darkens on light themes, lifts on dark.
+export function readable(color: string): string {
+  return `color-mix(in srgb, ${color} 72%, var(--text-normal))`;
+}
+
 export function findStatus(statuses: Status[], name: string): Status | null {
   for (const status of statuses) {
     if (status.name === name) return status;

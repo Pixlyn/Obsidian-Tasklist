@@ -7,7 +7,11 @@ export interface TaskListSettings {
   confirmDelete: boolean;
   keepAdding: boolean;
   columnWidth: number;
+  tasksFolder: string;
+  moveFiles: boolean;
 }
+
+export const DEFAULT_TASKS_FOLDER = "Tasks";
 
 export const DEFAULT_SETTINGS: TaskListSettings = {
   version: 1,
@@ -15,8 +19,18 @@ export const DEFAULT_SETTINGS: TaskListSettings = {
   openOnCreate: false,
   confirmDelete: true,
   keepAdding: false,
-  columnWidth: DEFAULT_COLUMN_WIDTH
+  columnWidth: DEFAULT_COLUMN_WIDTH,
+  tasksFolder: DEFAULT_TASKS_FOLDER,
+  moveFiles: true
 };
+
+export function normalizeTasksFolder(name: string): string {
+  const clean = name
+    .replace(/[\\/:*?"<>|#^[\]]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return clean.length === 0 ? DEFAULT_TASKS_FOLDER : clean;
+}
 
 export interface SettingsStore {
   settings: TaskListSettings;
@@ -33,6 +47,10 @@ export function mergeSettings(loaded: unknown): TaskListSettings {
   if (typeof record["confirmDelete"] === "boolean")
     settings.confirmDelete = record["confirmDelete"];
   if (typeof record["keepAdding"] === "boolean") settings.keepAdding = record["keepAdding"];
+  if (typeof record["moveFiles"] === "boolean") settings.moveFiles = record["moveFiles"];
+
+  const folder = record["tasksFolder"];
+  if (typeof folder === "string") settings.tasksFolder = normalizeTasksFolder(folder);
 
   const width = record["columnWidth"];
   if (typeof width === "number") settings.columnWidth = clampColumnWidth(width);

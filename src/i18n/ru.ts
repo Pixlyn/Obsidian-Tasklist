@@ -55,8 +55,7 @@ export const ru: Partial<Record<TranslationKey, string>> = {
   COLUMN_NAME: "Название",
   MORE_TAGS: "+{count}",
   BOARD_SETTINGS: "Настройки",
-  BOARD_SETTINGS_INTRO:
-    "Эти настройки действуют для всех списков. Изменения сохраняются сразу.",
+  BOARD_SETTINGS_INTRO: "Эти настройки действуют для всех списков. Изменения сохраняются сразу.",
   KEEP_ADDING: "Продолжать добавление после Enter",
   KEEP_ADDING_DESC:
     "Оставлять поле «+ Задача» открытым после сохранения, чтобы сразу вводить следующую.",
@@ -94,5 +93,17 @@ export const ru: Partial<Record<TranslationKey, string>> = {
   CREATE_TAG: "Создать «{name}»",
   REMOVE_TAG_TITLE: "Убрать тег",
   REMOVE_TAG_BODY: "«{name}» используют задачи ({count}). Убрать его и оттуда?",
-  FAILED: "TaskList: {message}"
+  FAILED: "TaskList: {message}",
+  CONFLICT:
+    "Этот список изменили в другом месте, поэтому правка отменена. Представление обновлено.",
+  SETTINGS_TASKS_FOLDER: "Имя папки задач",
+  SETTINGS_TASKS_FOLDER_DESC:
+    "Новый список хранит задачи в папке с этим именем рядом с заметкой списка.",
+  SETTINGS_MOVE_FILES: "Перемещать заметки между папками статусов",
+  SETTINGS_MOVE_FILES_DESC:
+    "При смене статуса заметка задачи перемещается в папку этого статуса. Новые списки начинают с этой настройкой.",
+  SETTINGS_OPEN_ON_CREATE: "Открывать новые задачи",
+  SETTINGS_OPEN_ON_CREATE_DESC: "Открывать заметку сразу после создания задачи.",
+  SETTINGS_CONFIRM_DELETE: "Подтверждать удаление",
+  SETTINGS_CONFIRM_DELETE_DESC: "Спрашивать, когда в корзину отправляют несколько задач."
 };
