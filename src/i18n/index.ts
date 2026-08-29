@@ -1,8 +1,31 @@
 import { getLanguage } from "obsidian";
+import { ar } from "./ar";
+import { de } from "./de";
 import { en, TranslationKey } from "./en";
+import { es } from "./es";
+import { fr } from "./fr";
+import { it } from "./it";
+import { ja } from "./ja";
+import { ko } from "./ko";
+import { pt } from "./pt";
+import { ru } from "./ru";
 import { tr } from "./tr";
+import { zh } from "./zh";
 
-const dictionaries: Record<string, Partial<Record<TranslationKey, string>>> = { en, tr };
+const dictionaries: Record<string, Partial<Record<TranslationKey, string>>> = {
+  ar,
+  de,
+  en,
+  es,
+  fr,
+  it,
+  ja,
+  ko,
+  pt,
+  ru,
+  tr,
+  zh
+};
 
 function language(): string {
   const current = getLanguage();
