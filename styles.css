@@ -1,0 +1,1316 @@
+/* ---- Container ---- */
+
+/* The board escapes the readable line width and the centered page gutters. */
+.markdown-preview-sizer:has(.block-language-tasklist),
+.cm-sizer:has(.block-language-tasklist) {
+  max-width: none;
+  width: 100%;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+/* Reading view keeps its own side padding on top of the sizer's. */
+.markdown-preview-view:has(.block-language-tasklist),
+.markdown-source-view.mod-cm6:has(.block-language-tasklist) .cm-contentContainer {
+  padding-inline: 0;
+}
+
+.block-language-tasklist {
+  width: 100%;
+  max-width: none;
+}
+
+/* Live preview wraps the block in its own bordered box; the board owns the pane. */
+.cm-preview-code-block:has(.block-language-tasklist),
+.cm-embed-block:has(.block-language-tasklist) {
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  overflow: visible;
+}
+
+/* The "edit source" button is replaced by the title bar controls (4.3). */
+.cm-embed-block:has(.block-language-tasklist) > .edit-block-button,
+.markdown-preview-sizer:has(.block-language-tasklist) > div > .edit-block-button {
+  display: none;
+}
+
+/* The board owns the heading, so Obsidian's inline title would be a duplicate. */
+.markdown-preview-sizer:has(.block-language-tasklist) > .inline-title,
+.cm-sizer:has(.block-language-tasklist) > .inline-title {
+  display: none;
+}
+
+/* ---- Own tab (4.9) ---- */
+
+/* In the full tab the frame itself scrolls, so the column strip can never
+   be scrolled past: rows clip inside the frame instead of drifting above it. */
+.tl-view {
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.tl-view .tl-board {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.tl-view .tl-frame {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.tl-board {
+  padding: 4px 12px 12px;
+}
+
+/* ---- Color popover (4.5) ---- */
+
+.tl-color-pop {
+  position: fixed;
+  z-index: var(--layer-menu);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 9px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: var(--shadow-s);
+}
+
+.tl-color-pop .tl-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 22px);
+  gap: 6px;
+}
+
+.tl-color-pop .tl-swatch-cell {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.tl-color-pop .tl-swatch-cell:hover {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 1px;
+}
+
+.tl-color-pop .tl-color-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tl-color-pop .tl-swatch {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tl-color-pop .tl-swatch::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.tl-color-pop .tl-swatch::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+
+.tl-color-pop .tl-hex {
+  width: 90px;
+  font-family: var(--font-monospace);
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+}
+
+/* The row control that opens the popover. */
+.tl-swatch-btn {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  border: 1px solid var(--background-modifier-border);
+  cursor: pointer;
+}
+
+.tl-swatch-btn:hover {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 1px;
+}
+
+.tl-board .tl-error {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--text-error);
+  background: var(--background-modifier-error);
+}
+
+/* ---- Frame ---- */
+
+.tl-board .tl-frame {
+  padding: 0 12px 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+}
+
+/* First group already carries the header margin. */
+.tl-board .tl-frame > .tl-columns + .tl-head {
+  margin-top: 10px;
+}
+
+/* ---- Column label strip ---- */
+
+.tl-board .tl-columns {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  /* Fills the frame's top edge, corners included, so rows disappear behind
+     it instead of next to it. */
+  margin: 0 -12px;
+  padding: 10px 22px 6px;
+  border-radius: 9px 9px 0 0;
+  background: var(--background-primary);
+  border-bottom: 1px solid var(--background-modifier-border);
+  color: var(--text-faint);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tl-board .tl-col-lead {
+  flex: 0 0 48px;
+}
+
+.tl-board .tl-col-name,
+.tl-board .tl-cell-name {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tl-board .tl-col-status,
+.tl-board .tl-cell-status {
+  flex: 0 0 16px;
+}
+
+.tl-board .tl-col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Labels sit centred over their cell; the title is the one that reads as a
+   left edge, so it stays put whether the row is full or empty. */
+.tl-board .tl-col-name,
+.tl-board .tl-cell-name {
+  justify-content: flex-start;
+}
+
+/* Uppercase tracking adds a trailing gap; pull it back so the label sits
+   centred over its cell. */
+.tl-board .tl-col-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: -0.04em;
+}
+
+/* Every column but the title shares one width. */
+.tl-board .tl-col-field,
+.tl-board .tl-cell-field,
+.tl-board .tl-col-created,
+.tl-board .tl-cell-created,
+.tl-board .tl-col-tags,
+.tl-board .tl-cell-tags,
+.tl-board .tl-col-priority,
+.tl-board .tl-cell-priority,
+.tl-board .tl-col-due,
+.tl-board .tl-cell-due {
+  flex: 0 0 var(--tl-col, 130px);
+}
+
+/* One divider per boundary, straddling the line with a wide grab area. */
+.tl-board .tl-col-grip {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 17px;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.tl-board .tl-col-grip.is-start {
+  left: -9px;
+}
+
+.tl-board .tl-col-grip.is-end {
+  right: -9px;
+}
+
+.tl-board .tl-col-grip::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 8px;
+  width: 1px;
+  background: transparent;
+  transition:
+    background 0.12s,
+    transform 0.12s;
+}
+
+.tl-board .tl-columns:hover .tl-col-grip::after,
+.tl-board .tl-col-grip.is-active::after {
+  background: var(--background-modifier-border);
+}
+
+.tl-board .tl-col-grip:hover::after,
+.tl-board .tl-col-grip.is-active::after {
+  background: var(--interactive-accent);
+  transform: scaleX(2);
+}
+
+.tl-board .tl-col-trail {
+  flex: 0 0 28px;
+}
+
+/* ---- Note line (4.8) ---- */
+
+.tl-board .tl-note {
+  padding: 8px 2px;
+}
+
+.tl-board .tl-note-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: text;
+  border-radius: 5px;
+  padding: 2px 6px;
+  margin-left: -6px;
+  display: inline-block;
+}
+
+.tl-board .tl-note-text.is-empty {
+  color: var(--text-faint);
+}
+
+.tl-board .tl-note-text:hover {
+  background: var(--background-modifier-hover);
+}
+
+.tl-board .tl-note-input,
+.tl-board .tl-status-input {
+  width: 100%;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: var(--background-primary);
+  border: 1px solid var(--interactive-accent);
+}
+
+.tl-board .tl-status-input {
+  width: 160px;
+}
+
+/* ---- New status form (4.3) ---- */
+
+.tl-board .tl-status-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tl-board .tl-swatch {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tl-board .tl-swatch::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.tl-board .tl-swatch::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+
+.tl-board .tl-hex {
+  width: 88px;
+  font-family: var(--font-monospace);
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+}
+
+.tl-board .tl-status-form .tl-confirm:hover {
+  background: var(--background-modifier-success);
+  color: var(--text-normal);
+}
+
+.tl-board .tl-status-form .tl-cancel:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+/* ---- Empty state ---- */
+
+.tl-board .tl-empty {
+  padding: 18px 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.tl-board .tl-empty h4 {
+  margin: 0 0 4px;
+  color: var(--text-normal);
+}
+
+.tl-board .tl-empty p {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+/* ---- Board title bar ---- */
+
+.tl-board .tl-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0 6px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.tl-board .tl-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-normal);
+  cursor: text;
+  border-radius: 5px;
+  padding: 2px 6px;
+  margin-left: -6px;
+}
+
+.tl-board .tl-title:hover {
+  background: var(--background-modifier-hover);
+}
+
+.tl-board .tl-title-input {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--background-primary);
+  border: 1px solid var(--interactive-accent);
+}
+
+.tl-board .tl-title-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.tl-board .tl-title-actions .tl-icon-only {
+  padding: 4px 7px;
+}
+
+.tl-board .tl-title-actions .tl-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.tl-board .tl-title-actions .tl-btn:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+}
+
+/* ---- Group header ---- */
+
+.tl-board .tl-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 26px 0 2px;
+}
+
+.tl-board .tl-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-left: -4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+  border-radius: 6px;
+  transition:
+    transform 0.15s,
+    color 0.12s,
+    background 0.12s;
+}
+
+.tl-board .tl-arrow:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+}
+
+.tl-board .tl-arrow.is-collapsed {
+  transform: rotate(-90deg);
+}
+
+.tl-board .tl-chip {
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.tl-board .tl-count {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.tl-board .tl-check-all {
+  margin-left: auto;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+
+.tl-board .tl-head:hover .tl-check-all {
+  opacity: 1;
+}
+
+/* ---- Rows ---- */
+
+.tl-board .tl-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+}
+
+.tl-board .tl-row:hover {
+  background: var(--background-modifier-hover);
+}
+
+.tl-board .tl-row.is-selected {
+  background: var(--background-modifier-hover);
+  box-shadow: inset 2px 0 0 var(--interactive-accent);
+}
+
+.tl-board .tl-grip {
+  display: flex;
+  align-items: center;
+  color: var(--text-faint);
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+
+.tl-board .tl-row:hover .tl-grip {
+  opacity: 1;
+}
+
+.tl-board .tl-grip:active {
+  cursor: grabbing;
+}
+
+.tl-board .tl-warning {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-warning);
+}
+
+.tl-board .tl-check {
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: opacity 0.12s;
+}
+
+.tl-board .tl-row:hover .tl-check,
+.tl-board .tl-row.is-selected .tl-check {
+  opacity: 1;
+}
+
+/* ---- Drag and drop ---- */
+
+.tl-board .tl-row.is-dragging {
+  opacity: 0.4;
+}
+
+.tl-board .tl-row.drop-before {
+  box-shadow: inset 0 2px 0 var(--interactive-accent);
+}
+
+.tl-board .tl-row.drop-after {
+  box-shadow: inset 0 -2px 0 var(--interactive-accent);
+}
+
+.tl-board .tl-drop-zone {
+  background: var(--background-modifier-hover);
+  border-radius: 8px;
+  outline: 2px dashed var(--interactive-accent);
+  outline-offset: -2px;
+}
+
+/* The dot carries the status menu, so it is a button with a wider hit area. */
+.tl-board .tl-dot {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 2px solid;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  transition:
+    box-shadow 0.12s,
+    transform 0.12s;
+}
+
+.tl-board .tl-dot:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 3px var(--background-modifier-hover);
+}
+
+.tl-board .tl-dot.is-unassigned,
+.tl-menu-dot.is-unassigned {
+  border-style: dashed;
+}
+
+.tl-menu-dot.is-unassigned {
+  background: transparent;
+  border-width: 2px;
+}
+
+.tl-board .tl-chip.is-unassigned {
+  background: transparent;
+  border: 1px dashed;
+}
+
+.tl-board .tl-name {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-normal);
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tl-board .tl-name:hover {
+  color: var(--text-accent);
+}
+
+/* ---- Priority and due date cells (4.16) ---- */
+
+.tl-board .tl-flag,
+.tl-board .tl-due {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 3px 6px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  transition:
+    opacity 0.12s,
+    background 0.12s;
+}
+
+.tl-board .tl-flag:hover,
+.tl-board .tl-due:hover {
+  background: var(--background-modifier-hover);
+}
+
+.tl-board .tl-flag {
+  color: var(--tl-flag-color, var(--text-faint));
+}
+
+.tl-board .tl-due {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Cells keep a fixed width so every row lines up, filled or not.
+   The button inside only takes the room its content needs. */
+.tl-board .tl-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tl-board .tl-field {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 5px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tl-board .tl-field:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.tl-board .tl-field.is-empty,
+.tl-board .tl-field-toggle:not(.is-enabled) {
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+
+.tl-board .tl-row:hover .tl-field.is-empty,
+.tl-board .tl-row:hover .tl-field-toggle {
+  opacity: 1;
+}
+
+.tl-board .tl-field-toggle {
+  margin: 0;
+  cursor: pointer;
+}
+
+.tl-manager-modal .tl-field-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-faint);
+}
+
+.tl-field-modal .tl-field-name {
+  width: 100%;
+  margin: 10px 0 4px;
+}
+
+.tl-field-modal .tl-field-types {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.tl-field-modal .setting-item {
+  padding-top: 14px;
+}
+
+.tl-board .tl-cell-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tl-board .tl-cell > button {
+  max-width: 100%;
+}
+
+.tl-board .tl-due.is-today {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+.tl-board .tl-due.is-overdue {
+  color: var(--text-error);
+  font-weight: 600;
+}
+
+/* Unset cells stay in the layout but only show up on hover. */
+.tl-board .tl-flag.is-empty,
+.tl-board .tl-tags.is-empty,
+.tl-board .tl-due.is-empty {
+  opacity: 0;
+  color: var(--text-faint);
+}
+
+.tl-board .tl-row:hover .tl-flag.is-empty,
+.tl-board .tl-row:hover .tl-tags.is-empty,
+.tl-board .tl-row:hover .tl-due.is-empty,
+.tl-board .tl-row:focus-within .tl-flag.is-empty,
+.tl-board .tl-row:focus-within .tl-tags.is-empty,
+.tl-board .tl-row:focus-within .tl-due.is-empty {
+  opacity: 1;
+}
+
+/* ---- Tag cell and tag menu (4.14) ---- */
+
+.tl-board .tl-tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  overflow: hidden;
+  padding: 3px 6px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  transition:
+    opacity 0.12s,
+    background 0.12s;
+}
+
+.tl-board .tl-tags:hover {
+  background: var(--background-modifier-hover);
+}
+
+.tl-tag-chip {
+  display: inline-block;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 1px 7px;
+  border-radius: 9px;
+  background: var(--background-modifier-border);
+  color: var(--text-normal);
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.tl-settings-modal .tl-modal-hint {
+  margin: 0 0 14px;
+}
+
+.tl-settings-modal .setting-item {
+  padding: 10px 0;
+}
+
+.tl-settings-modal .setting-item-description {
+  font-size: 11px;
+}
+
+.tl-board .tl-tag-more {
+  flex-shrink: 0;
+  padding: 1px 6px;
+  border-radius: 9px;
+  background: var(--background-modifier-border);
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.tl-tag-menu {
+  min-width: 220px;
+  max-width: 280px;
+}
+
+.tl-tag-search {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.tl-tag-options {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.tl-status-row .tl-tag-chip {
+  font-size: 12px;
+  padding: 2px 10px;
+}
+
+.tl-menu-flag {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.tl-date-pop {
+  position: fixed;
+  z-index: var(--layer-menu);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 9px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: var(--shadow-s);
+}
+
+.tl-date-pop .tl-date-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tl-date-pop .tl-date-input {
+  flex: 1;
+  font-size: 13px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+}
+
+.tl-date-pop .tl-date-row {
+  display: flex;
+  gap: 6px;
+}
+
+/* ---- Row actions ---- */
+
+.tl-board .tl-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 28px;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+
+.tl-board .tl-row:hover .tl-actions,
+.tl-board .tl-row:focus-within .tl-actions {
+  opacity: 1;
+}
+
+.tl-board .tl-icon-btn {
+  display: flex;
+  align-items: center;
+  padding: 3px 6px;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-faint);
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.tl-board .tl-icon-btn:hover {
+  background: var(--background-modifier-error);
+  color: var(--text-on-accent);
+}
+
+/* ---- Status menu (appended to body, outside the container) ---- */
+
+.tl-menu {
+  position: fixed;
+  z-index: var(--layer-menu);
+  min-width: 210px;
+  padding: 5px;
+  border-radius: 9px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: var(--shadow-s);
+}
+
+.tl-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-normal);
+}
+
+.tl-menu-item:hover {
+  background: var(--background-modifier-hover);
+}
+
+.tl-menu-item.is-current {
+  font-weight: 600;
+}
+
+.tl-menu-item.is-current .tl-menu-mark {
+  margin-left: auto;
+  color: var(--text-muted);
+}
+
+.tl-menu-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ---- Task creation ---- */
+
+.tl-board .tl-add {
+  padding: 6px 10px 6px 32px;
+}
+
+.tl-board .tl-add-btn {
+  font-size: 13px;
+  color: var(--text-faint);
+  cursor: pointer;
+}
+
+.tl-board .tl-add-btn:hover {
+  color: var(--text-normal);
+}
+
+.tl-board .tl-add-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tl-board .tl-add-form .tl-confirm:hover {
+  background: var(--background-modifier-success);
+  color: var(--text-normal);
+}
+
+.tl-board .tl-add-form .tl-cancel:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.tl-board .tl-add-input {
+  width: 100%;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: var(--background-primary);
+  border: 1px solid var(--interactive-accent);
+}
+
+/* ---- Bulk action toolbar ---- */
+
+.tl-board .tl-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: var(--shadow-s);
+}
+
+.tl-board .tl-toolbar-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: auto;
+}
+
+.tl-board .tl-btn {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tl-board .tl-btn-danger {
+  background: var(--background-modifier-error);
+  color: var(--text-on-accent);
+}
+
+/* ---- Status manager (4.4) ---- */
+
+/* Hint on the left, "+ Status" pinned right under the close button. */
+.tl-search-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 240px;
+  padding: 8px;
+}
+
+.tl-search-box .tl-search-input {
+  width: 100%;
+  resize: vertical;
+  font-size: 13px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+}
+
+.tl-search-box .tl-search-title {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding: 2px 6px;
+}
+
+.tl-board .tl-btn.is-active {
+  color: var(--text-accent);
+}
+
+.tl-manager-modal .tl-row-column-label {
+  font-size: 13px;
+  color: var(--text-normal);
+}
+
+.tl-manager-modal .tl-row-column.is-off .tl-row-column-label {
+  color: var(--text-faint);
+  text-decoration: line-through;
+}
+
+.tl-manager-modal .tl-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.tl-manager-modal .tl-tab {
+  padding: 6px 12px;
+  font-size: 13px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 6px 6px 0 0;
+  box-shadow: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.tl-manager-modal .tl-tab:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.tl-manager-modal .tl-tab.is-active {
+  color: var(--text-normal);
+  border-bottom-color: var(--interactive-accent);
+}
+
+.tl-manager-modal .tl-tab-body {
+  display: none;
+}
+
+.tl-manager-modal .tl-tab-body.is-active {
+  display: block;
+}
+
+.tl-status-modal .tl-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tl-status-modal .tl-modal-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.tl-status-modal .tl-status-row.drop-before {
+  box-shadow: inset 0 2px 0 var(--interactive-accent);
+}
+
+.tl-status-modal .tl-status-row.drop-after {
+  box-shadow: inset 0 -2px 0 var(--interactive-accent);
+}
+
+.tl-status-modal .tl-hex {
+  width: 84px;
+  font-family: var(--font-monospace);
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+}
+
+.tl-status-modal .tl-confirm:hover {
+  background: var(--background-modifier-success);
+  color: var(--text-normal);
+}
+
+.tl-status-modal .tl-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tl-status-modal .tl-status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+}
+
+.tl-status-modal .tl-status-row:hover {
+  background: var(--background-modifier-hover);
+}
+
+.tl-status-modal .tl-status-row.is-dragging {
+  opacity: 0.4;
+}
+
+.tl-status-modal .tl-status-row.is-archive {
+  margin-top: 6px;
+  border-top: 1px solid var(--background-modifier-border);
+  border-radius: 0;
+}
+
+.tl-status-modal .tl-grip {
+  color: var(--text-faint);
+  cursor: grab;
+}
+
+.tl-status-modal .tl-chip.is-unassigned {
+  background: transparent;
+  border: 1px dashed;
+}
+
+.tl-status-modal .tl-chip {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  cursor: text;
+}
+
+.tl-status-modal .tl-swatch {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tl-status-modal .tl-swatch::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.tl-status-modal .tl-swatch::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+
+.tl-status-modal .tl-status-input {
+  width: 160px;
+  font-size: 13px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  background: var(--background-primary);
+  border: 1px solid var(--interactive-accent);
+}
+
+.tl-status-modal .tl-archive-tag {
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.tl-status-modal .tl-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.tl-status-modal .tl-icon-btn {
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.tl-status-modal .tl-icon-btn:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.tl-status-modal .tl-remove:hover {
+  background: var(--background-modifier-error);
+  color: var(--text-on-accent);
+}
+
+.tl-status-modal .tl-add-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ---- Archive ---- */
+
+.tl-board .tl-archive summary {
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 6px 0;
+}
+
+.tl-board .tl-archive .tl-row {
+  opacity: 0.65;
+}
+
+.tl-board .tl-archive .tl-row:hover {
+  opacity: 1;
+}

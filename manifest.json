@@ -1,0 +1,10 @@
+{
+  "id": "tasklist-board",
+  "name": "TaskList",
+  "version": "0.1.0",
+  "minAppVersion": "1.13.0",
+  "description": "Status-grouped task list with folder sync, drag and drop, and inline status editing.",
+  "author": "Pixlyn",
+  "authorUrl": "https://github.com/pixlyn",
+  "isDesktopOnly": false
+}

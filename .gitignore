@@ -1,0 +1,14 @@
+node_modules/
+main.js
+*.js.map
+.DS_Store
+npm-debug.log*
+package-lock.json
+yarn.lock
+
+# Plugin data written by Obsidian while developing in a test vault
+data.json
+
+# Local-only working documents
+plan.md
+prototype.md
