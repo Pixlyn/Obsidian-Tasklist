@@ -7,13 +7,13 @@ import { ensureFolder, folderForStatus, freePath, sanitizeName } from "./folder-
 
 // One unreadable note must not hold back the rest of the batch.
 async function eachFile(files: TFile[], work: (file: TFile) => Promise<void>): Promise<void> {
-  let failure: unknown = null;
+  let failure: Error | null = null;
 
   for (const file of files) {
     try {
       await work(file);
     } catch (error) {
-      failure ??= error;
+      failure ??= error instanceof Error ? error : new Error(String(error));
     }
   }
 

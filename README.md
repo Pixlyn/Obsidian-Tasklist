@@ -7,7 +7,7 @@ proprietary database.
 ## Features
 
 - **Status groups** — collapsible groups with custom names and colors, plus a built-in
-  *Unassigned* group and an *Archive* group at the bottom.
+  _Unassigned_ group and an _Archive_ group at the bottom.
 - **Folder sync** — changing a task's status moves its note into the matching subfolder
   (`Tasks/Todo`, `Tasks/Archive`, …). Can be turned off with `moveFiles: false`.
 - **Drag and drop** — reorder tasks inside a group or drag them between groups; the
@@ -31,7 +31,7 @@ proprietary database.
 1. Download `main.js`, `manifest.json` and `styles.css` from the
    [latest release](../../releases/latest).
 2. Copy them into `<vault>/.obsidian/plugins/tasklist-board/`.
-3. Reload Obsidian and enable **TaskList** in *Settings → Community plugins*.
+3. Reload Obsidian and enable **TaskList** in _Settings → Community plugins_.
 
 Requires Obsidian `1.13.0` or newer. Works on desktop and mobile.
 
@@ -58,23 +58,23 @@ statuses:
 
 ### Block options
 
-| Key                | Type      | Default         | Description                             |
-| ------------------ | --------- | --------------- | --------------------------------------- |
-| `folder`           | string    | — (required)    | Folder scanned for task notes.          |
-| `statuses`         | list      | Todo, Completed | Status name + color pairs, in board order. |
-| `archive`          | string    | `Archive`       | Name of the archive group.              |
-| `archiveColor`     | string    | `#6b7280`       | Archive group color.                    |
-| `archiveFolder`    | string    | `Archive`       | Subfolder used for archived tasks.      |
-| `unassigned`       | string    | `Unassigned`    | Group for notes without a valid status. |
-| `unassignedColor`  | string    | `#6b7280`       | Unassigned group color.                 |
-| `unassignedFolder` | string    | `Unassigned`    | Subfolder for unassigned tasks.         |
-| `unassignedIndex`  | number    | `0`             | Position of the unassigned group.       |
-| `moveFiles`        | boolean   | `true`          | Move the note when its status changes.  |
-| `note`             | string    | —               | Free-text note shown on the board.      |
-| `tags`             | list      | —               | Tag name + color pairs.                 |
-| `fields`           | list      | —               | Custom fields (`key`, `name`, `type`).  |
-| `columns`          | list      | all builtins    | Column order.                           |
-| `hidden`           | list      | `[created]`     | Columns hidden from the board.          |
+| Key                | Type    | Default         | Description                                |
+| ------------------ | ------- | --------------- | ------------------------------------------ |
+| `folder`           | string  | — (required)    | Folder scanned for task notes.             |
+| `statuses`         | list    | Todo, Completed | Status name + color pairs, in board order. |
+| `archive`          | string  | `Archive`       | Name of the archive group.                 |
+| `archiveColor`     | string  | `#6b7280`       | Archive group color.                       |
+| `archiveFolder`    | string  | `Archive`       | Subfolder used for archived tasks.         |
+| `unassigned`       | string  | `Unassigned`    | Group for notes without a valid status.    |
+| `unassignedColor`  | string  | `#6b7280`       | Unassigned group color.                    |
+| `unassignedFolder` | string  | `Unassigned`    | Subfolder for unassigned tasks.            |
+| `unassignedIndex`  | number  | `0`             | Position of the unassigned group.          |
+| `moveFiles`        | boolean | `true`          | Move the note when its status changes.     |
+| `note`             | string  | —               | Free-text note shown on the board.         |
+| `tags`             | list    | —               | Tag name + color pairs.                    |
+| `fields`           | list    | —               | Custom fields (`key`, `name`, `type`).     |
+| `columns`          | list    | all builtins    | Column order.                              |
+| `hidden`           | list    | `[created]`     | Columns hidden from the board.             |
 
 Most of these can be edited from the board UI instead of by hand — the block is
 rewritten for you.
@@ -99,8 +99,8 @@ Dataview or any other plugin.
 
 ## Settings
 
-| Setting        | Description                                        |
-| -------------- | -------------------------------------------------- |
+| Setting        | Description                                         |
+| -------------- | --------------------------------------------------- |
 | Tasks folder   | Default folder name used when creating a new board. |
 | Move files     | Default value of `moveFiles` for new boards.        |
 | Open on create | Open the note right after a task is created.        |

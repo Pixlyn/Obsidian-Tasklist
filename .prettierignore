@@ -1,5 +1,6 @@
 main.js
 data.json
+.claude
 node_modules
 pnpm-lock.yaml
 plan.md
