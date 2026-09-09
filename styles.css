@@ -1,3 +1,23 @@
+/* ---- Theme tokens ---- */
+
+.tl-board,
+.tl-menu,
+.tl-color-pop,
+.modal.tl-status-modal,
+.modal.tl-settings-modal {
+  --tl-border: var(--background-modifier-border);
+  --tl-faint: var(--text-faint);
+}
+
+.theme-light .tl-board,
+.theme-light .tl-menu,
+.theme-light .tl-color-pop,
+.theme-light .modal.tl-status-modal,
+.theme-light .modal.tl-settings-modal {
+  --tl-border: var(--background-modifier-border-hover);
+  --tl-faint: var(--text-muted);
+}
+
 /* ---- Container ---- */
 
 /* The board escapes the readable line width and the centered page gutters. */
@@ -81,7 +101,7 @@
   padding: 8px;
   border-radius: 9px;
   background: var(--background-secondary);
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
   box-shadow: var(--shadow-s);
 }
 
@@ -96,7 +116,7 @@
   height: 22px;
   border-radius: 5px;
   cursor: pointer;
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
 }
 
 .tl-color-pop .tl-swatch-cell:hover {
@@ -114,7 +134,7 @@
   width: 26px;
   height: 26px;
   padding: 0;
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
   border-radius: 6px;
   background: transparent;
   cursor: pointer;
@@ -136,7 +156,7 @@
   padding: 4px 6px;
   border-radius: 5px;
   background: var(--background-primary);
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
 }
 
 /* The row control that opens the popover. */
@@ -145,7 +165,7 @@
   height: 24px;
   flex-shrink: 0;
   border-radius: 6px;
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
   cursor: pointer;
 }
 
@@ -165,7 +185,7 @@
 
 .tl-board .tl-frame {
   padding: 0 12px 12px;
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
   border-radius: 10px;
 }
 
@@ -190,8 +210,8 @@
   padding: 10px 22px 6px;
   border-radius: 9px 9px 0 0;
   background: var(--background-primary);
-  border-bottom: 1px solid var(--background-modifier-border);
-  color: var(--text-faint);
+  border-bottom: 1px solid var(--tl-border);
+  color: var(--tl-faint);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -285,7 +305,7 @@
 
 .tl-board .tl-columns:hover .tl-col-grip::after,
 .tl-board .tl-col-grip.is-active::after {
-  background: var(--background-modifier-border);
+  background: var(--tl-border);
 }
 
 .tl-board .tl-col-grip:hover::after,
@@ -315,7 +335,7 @@
 }
 
 .tl-board .tl-note-text.is-empty {
-  color: var(--text-faint);
+  color: var(--tl-faint);
 }
 
 .tl-board .tl-note-text:hover {
@@ -348,7 +368,7 @@
   width: 26px;
   height: 26px;
   padding: 0;
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
   border-radius: 6px;
   background: transparent;
   cursor: pointer;
@@ -370,7 +390,7 @@
   padding: 4px 6px;
   border-radius: 5px;
   background: var(--background-primary);
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
 }
 
 .tl-board .tl-status-form .tl-confirm:hover {
@@ -408,7 +428,7 @@
   align-items: center;
   gap: 8px;
   padding: 2px 0 6px;
-  border-bottom: 1px solid var(--background-modifier-border);
+  border-bottom: 1px solid var(--tl-border);
 }
 
 .tl-board .tl-title {
@@ -452,7 +472,7 @@
   gap: 5px;
   color: var(--text-muted);
   background: transparent;
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
 }
 
 .tl-board .tl-title-actions .tl-btn:hover {
@@ -526,7 +546,7 @@
   align-items: center;
   gap: 10px;
   padding: 7px 10px;
-  border-bottom: 1px solid var(--background-modifier-border);
+  border-bottom: 1px solid var(--tl-border);
   border-radius: 6px;
 }
 
@@ -542,7 +562,7 @@
 .tl-board .tl-grip {
   display: flex;
   align-items: center;
-  color: var(--text-faint);
+  color: var(--tl-faint);
   cursor: grab;
   opacity: 0;
   transition: opacity 0.12s;
@@ -607,14 +627,15 @@
   background: transparent;
   box-shadow: none;
   cursor: pointer;
-  transition:
-    box-shadow 0.12s,
-    transform 0.12s;
+  transition: box-shadow 0.12s;
 }
 
 .tl-board .tl-dot:hover {
-  transform: scale(1.1);
   box-shadow: 0 0 0 3px var(--background-modifier-hover);
+}
+
+.tl-board .tl-dot.is-filled.is-unassigned {
+  background: transparent;
 }
 
 .tl-board .tl-dot.is-unassigned,
@@ -673,7 +694,7 @@
 }
 
 .tl-board .tl-flag {
-  color: var(--tl-flag-color, var(--text-faint));
+  color: var(--tl-flag-color, var(--tl-faint));
 }
 
 .tl-board .tl-due {
@@ -731,7 +752,7 @@
 .tl-manager-modal .tl-field-icon {
   display: flex;
   align-items: center;
-  color: var(--text-faint);
+  color: var(--tl-faint);
 }
 
 .tl-field-modal .tl-field-name {
@@ -777,7 +798,7 @@
 .tl-board .tl-tags.is-empty,
 .tl-board .tl-due.is-empty {
   opacity: 0;
-  color: var(--text-faint);
+  color: var(--tl-faint);
 }
 
 .tl-board .tl-row:hover .tl-flag.is-empty,
@@ -820,7 +841,7 @@
   white-space: nowrap;
   padding: 1px 7px;
   border-radius: 9px;
-  background: var(--background-modifier-border);
+  background: var(--tl-border);
   color: var(--text-normal);
   font-size: 11px;
   line-height: 16px;
@@ -842,7 +863,7 @@
   flex-shrink: 0;
   padding: 1px 6px;
   border-radius: 9px;
-  background: var(--background-modifier-border);
+  background: var(--tl-border);
   color: var(--text-muted);
   font-size: 11px;
   line-height: 16px;
@@ -883,7 +904,7 @@
   padding: 8px;
   border-radius: 9px;
   background: var(--background-secondary);
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
   box-shadow: var(--shadow-s);
 }
 
@@ -899,7 +920,7 @@
   padding: 4px 6px;
   border-radius: 5px;
   background: var(--background-primary);
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
 }
 
 .tl-date-pop .tl-date-row {
@@ -930,7 +951,7 @@
   padding: 3px 6px;
   border-radius: 5px;
   background: transparent;
-  color: var(--text-faint);
+  color: var(--tl-faint);
   border: none;
   cursor: pointer;
   box-shadow: none;
@@ -950,7 +971,7 @@
   padding: 5px;
   border-radius: 9px;
   background: var(--background-secondary);
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
   box-shadow: var(--shadow-s);
 }
 
@@ -988,12 +1009,13 @@
 /* ---- Task creation ---- */
 
 .tl-board .tl-add {
-  padding: 6px 10px 6px 32px;
+  padding: 6px 10px;
+  padding-inline-start: calc(56px + var(--checkbox-size, 16px));
 }
 
 .tl-board .tl-add-btn {
   font-size: 13px;
-  color: var(--text-faint);
+  color: var(--tl-faint);
   cursor: pointer;
 }
 
@@ -1039,7 +1061,7 @@
   margin-bottom: 6px;
   border-radius: 8px;
   background: var(--background-secondary);
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
   box-shadow: var(--shadow-s);
 }
 
@@ -1063,31 +1085,166 @@
 
 /* ---- Status manager (4.4) ---- */
 
-/* Hint on the left, "+ Status" pinned right under the close button. */
-.tl-search-box {
+.tl-folder-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.tl-folder-value {
+  font-family: var(--font-monospace);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.tl-modal-section {
+  margin: 18px 0 4px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tl-faint);
+}
+
+.tl-settings-modal .tl-modal-section:first-child {
+  margin-top: 0;
+}
+
+.tl-dot-preview {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.tl-dot-sample {
+  width: 14px;
+  height: 14px;
+  border: 2px solid;
+  border-radius: 50%;
+}
+
+.tl-search-bar .tl-search-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 130px;
+  padding: 0 4px;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.tl-search-value.is-empty {
+  color: var(--tl-faint);
+}
+
+.tl-menu-icon {
+  display: flex;
+  align-items: center;
+  width: 16px;
+  color: var(--text-muted);
+}
+
+.tl-search-panel {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  min-width: 240px;
-  padding: 8px;
+  gap: 2px;
+  min-width: 220px;
+  padding: 6px;
 }
 
-.tl-search-box .tl-search-input {
-  width: 100%;
-  resize: vertical;
-  font-size: 13px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  background: var(--background-primary);
-  border: 1px solid var(--background-modifier-border);
-}
-
-.tl-search-box .tl-search-title {
+.tl-search-panel .tl-search-title {
   font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--text-faint);
-  padding: 2px 6px;
+  color: var(--tl-faint);
+  padding: 2px 6px 4px;
+}
+
+.tl-search-panel .tl-search-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0 2px 4px;
+}
+
+.tl-search-panel .tl-search-type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border: 1px solid var(--tl-border);
+  cursor: pointer;
+}
+
+.tl-search-panel .tl-search-type:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.tl-search-panel .tl-search-type.is-current {
+  color: var(--text-on-accent);
+  background: var(--interactive-accent);
+  border-color: var(--interactive-accent);
+}
+
+.tl-search-panel .tl-search-divider {
+  height: 1px;
+  margin: 2px 0 6px;
+  background: var(--tl-border);
+}
+
+.tl-search-panel .tl-search-input {
+  width: 100%;
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: var(--background-primary);
+  border: 1px solid var(--tl-border);
+}
+
+.tl-search-panel .tl-search-empty {
+  font-size: 12px;
+  color: var(--tl-faint);
+  padding: 4px 8px;
+}
+
+.tl-board .tl-title-actions .tl-search-btn {
+  max-width: 220px;
+  color: var(--text-accent);
+  border-color: var(--interactive-accent);
+}
+
+.tl-search-btn .tl-search-btn-icon {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.tl-search-btn .tl-search-btn-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tl-search-btn .tl-search-clear {
+  display: flex;
+  flex-shrink: 0;
+  margin-inline-start: 2px;
+  border-radius: 3px;
+  color: var(--text-muted);
+}
+
+.tl-search-btn .tl-search-clear:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+}
+
+.tl-search-btn .svg-icon {
+  width: 14px;
+  height: 14px;
 }
 
 .tl-board .tl-btn.is-active {
@@ -1100,7 +1257,7 @@
 }
 
 .tl-manager-modal .tl-row-column.is-off .tl-row-column-label {
-  color: var(--text-faint);
+  color: var(--tl-faint);
   text-decoration: line-through;
 }
 
@@ -1108,7 +1265,7 @@
   display: flex;
   gap: 4px;
   margin-bottom: 14px;
-  border-bottom: 1px solid var(--background-modifier-border);
+  border-bottom: 1px solid var(--tl-border);
 }
 
 .tl-manager-modal .tl-tab {
@@ -1169,7 +1326,7 @@
   padding: 3px 6px;
   border-radius: 5px;
   background: var(--background-primary);
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
 }
 
 .tl-status-modal .tl-confirm:hover {
@@ -1202,12 +1359,12 @@
 
 .tl-status-modal .tl-status-row.is-archive {
   margin-top: 6px;
-  border-top: 1px solid var(--background-modifier-border);
+  border-top: 1px solid var(--tl-border);
   border-radius: 0;
 }
 
 .tl-status-modal .tl-grip {
-  color: var(--text-faint);
+  color: var(--tl-faint);
   cursor: grab;
 }
 
@@ -1229,7 +1386,7 @@
   width: 24px;
   height: 24px;
   padding: 0;
-  border: 1px solid var(--background-modifier-border);
+  border: 1px solid var(--tl-border);
   border-radius: 6px;
   background: transparent;
   cursor: pointer;
@@ -1255,7 +1412,7 @@
 
 .tl-status-modal .tl-archive-tag {
   font-size: 11px;
-  color: var(--text-faint);
+  color: var(--tl-faint);
 }
 
 .tl-status-modal .tl-row-actions {

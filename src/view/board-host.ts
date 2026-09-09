@@ -6,6 +6,7 @@ import { PriorityKey } from "../model/priority";
 import { SearchState } from "../model/search";
 import { Status } from "../model/status";
 import { TaskGroup, TaskItem } from "../model/task";
+import { SettingsStore } from "../settings";
 import { StatusEditResult } from "../ui/status-panel";
 import { TagEditResult } from "../ui/tag-panel";
 
@@ -14,6 +15,7 @@ export interface BoardHost {
   readonly config: BoardConfig;
   readonly boardPath: string;
   readonly groups: TaskGroup[];
+  readonly store: SettingsStore;
 
   isCollapsed(statusName: string): boolean;
   setCollapsed(statusName: string, collapsed: boolean): void;
@@ -26,6 +28,8 @@ export interface BoardHost {
   clearSelection(): void;
 
   updateConfig(change: (config: BoardConfig) => void): void;
+
+  changeFolder(folder: string): void;
 
   addStatus(name: string, color: string): void;
 

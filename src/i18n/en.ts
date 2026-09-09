@@ -93,16 +93,42 @@ export const en = {
   FAILED: "TaskList: {message}",
   CONFLICT:
     "This list changed somewhere else, so the edit was dropped. The view is up to date now.",
-  SETTINGS_TASKS_FOLDER: "Task folder name",
-  SETTINGS_TASKS_FOLDER_DESC:
-    "A new list keeps its tasks in a folder with this name, beside the list note.",
-  SETTINGS_MOVE_FILES: "Move notes between status folders",
+  SETTINGS_MOVE_FILES: "Move notes when the status changes",
   SETTINGS_MOVE_FILES_DESC:
-    "Changing a task's status also moves its note into that status's folder. New lists start with this setting.",
+    "A task's note follows its status into that status's folder. New lists start with this setting.",
   SETTINGS_OPEN_ON_CREATE: "Open new tasks",
   SETTINGS_OPEN_ON_CREATE_DESC: "Open the note as soon as a task is created.",
   SETTINGS_CONFIRM_DELETE: "Confirm before deleting",
-  SETTINGS_CONFIRM_DELETE_DESC: "Ask first when several tasks are moved to the trash."
+  SETTINGS_CONFIRM_DELETE_DESC: "Ask first when several tasks are moved to the trash.",
+  SETTINGS_LANGUAGE: "Language",
+  SETTINGS_LANGUAGE_DESC: "TaskList follows Obsidian's language unless you pick one here.",
+  SETTINGS_LANGUAGE_SYSTEM: "System",
+  SETTINGS_SEARCH_MODE: "Search preference",
+  SETTINGS_SEARCH_MODE_DESC: "Automatic filters as you type; manual waits for Enter.",
+  SETTINGS_SEARCH_MODE_TYPE: "Automatic",
+  SETTINGS_SEARCH_MODE_ENTER: "Manual",
+  SETTINGS_SEARCH_DELAY: "Search delay (ms)",
+  SETTINGS_SEARCH_DELAY_DESC:
+    "How long to wait after the last keystroke before filtering. 1000 ms is one second.",
+  SEARCH_HINT_ENTER: "Press Enter to search",
+  SEARCH_CLEAR: "Clear search",
+  SEARCH_PICK: "Pick a value…",
+  SETTINGS_STATUS_DOT: "Status marker",
+  SETTINGS_STATUS_DOT_DESC: "How the status circle on each row is drawn.",
+  SETTINGS_STATUS_DOT_OUTLINE: "Outline",
+  SETTINGS_STATUS_DOT_FILLED: "Filled",
+  BOARD_FOLDER: "This list's folder",
+  BOARD_FOLDER_DESC:
+    "Where this list reads its tasks from. Changing it does not move the notes that are already there.",
+  BOARD_SECTION: "This list",
+  GLOBAL_SECTION: "All lists",
+  BROWSE: "Browse",
+  SELECT_FOLDER: "Select a folder",
+  VAULT_ROOT: "Vault root",
+  STATUS_TODO: "Todo",
+  STATUS_COMPLETED: "Completed",
+  STATUS_ARCHIVE: "Archive",
+  STATUS_UNASSIGNED: "Unassigned"
 };
 
 export type TranslationKey = keyof typeof en;

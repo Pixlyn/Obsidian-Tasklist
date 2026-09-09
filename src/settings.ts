@@ -1,4 +1,9 @@
+import { isLanguage, SYSTEM_LANGUAGE } from "./i18n";
 import { clampColumnWidth, DEFAULT_COLUMN_WIDTH } from "./model/columns";
+
+export type SearchMode = "type" | "enter";
+
+export type StatusDot = "outline" | "filled";
 
 export interface TaskListSettings {
   version: number;
@@ -7,11 +12,18 @@ export interface TaskListSettings {
   confirmDelete: boolean;
   keepAdding: boolean;
   columnWidth: number;
-  tasksFolder: string;
   moveFiles: boolean;
+  language: string;
+  searchMode: SearchMode;
+  searchDelay: number;
+  statusDot: StatusDot;
 }
 
 export const DEFAULT_TASKS_FOLDER = "Tasks";
+
+export const MIN_SEARCH_DELAY = 0;
+export const MAX_SEARCH_DELAY = 3000;
+export const DEFAULT_SEARCH_DELAY = 1000;
 
 export const DEFAULT_SETTINGS: TaskListSettings = {
   version: 1,
@@ -20,21 +32,30 @@ export const DEFAULT_SETTINGS: TaskListSettings = {
   confirmDelete: true,
   keepAdding: false,
   columnWidth: DEFAULT_COLUMN_WIDTH,
-  tasksFolder: DEFAULT_TASKS_FOLDER,
-  moveFiles: true
+  moveFiles: true,
+  language: SYSTEM_LANGUAGE,
+  searchMode: "type",
+  searchDelay: DEFAULT_SEARCH_DELAY,
+  statusDot: "outline"
 };
 
-export function normalizeTasksFolder(name: string): string {
-  const clean = name
-    .replace(/[\\/:*?"<>|#^[\]]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-  return clean.length === 0 ? DEFAULT_TASKS_FOLDER : clean;
+export function clampSearchDelay(delay: number): number {
+  if (!Number.isFinite(delay)) return DEFAULT_SEARCH_DELAY;
+  return Math.round(Math.min(Math.max(delay, MIN_SEARCH_DELAY), MAX_SEARCH_DELAY));
+}
+
+export function isSearchMode(value: string): value is SearchMode {
+  return value === "type" || value === "enter";
+}
+
+export function isStatusDot(value: string): value is StatusDot {
+  return value === "outline" || value === "filled";
 }
 
 export interface SettingsStore {
   settings: TaskListSettings;
   saveSettings(): Promise<void>;
+  onSettingsChange(listener: () => void): () => void;
 }
 
 export function mergeSettings(loaded: unknown): TaskListSettings {
@@ -49,11 +70,20 @@ export function mergeSettings(loaded: unknown): TaskListSettings {
   if (typeof record["keepAdding"] === "boolean") settings.keepAdding = record["keepAdding"];
   if (typeof record["moveFiles"] === "boolean") settings.moveFiles = record["moveFiles"];
 
-  const folder = record["tasksFolder"];
-  if (typeof folder === "string") settings.tasksFolder = normalizeTasksFolder(folder);
-
   const width = record["columnWidth"];
   if (typeof width === "number") settings.columnWidth = clampColumnWidth(width);
+
+  const language = record["language"];
+  if (typeof language === "string" && isLanguage(language)) settings.language = language;
+
+  const mode = record["searchMode"];
+  if (typeof mode === "string" && isSearchMode(mode)) settings.searchMode = mode;
+
+  const delay = record["searchDelay"];
+  if (typeof delay === "number") settings.searchDelay = clampSearchDelay(delay);
+
+  const dot = record["statusDot"];
+  if (typeof dot === "string" && isStatusDot(dot)) settings.statusDot = dot;
 
   const collapsed = record["collapsed"];
   if (typeof collapsed === "object" && collapsed !== null && !Array.isArray(collapsed)) {

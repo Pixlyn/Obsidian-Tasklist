@@ -97,15 +97,42 @@ export const de: Partial<Record<TranslationKey, string>> = {
   FAILED: "TaskList: {message}",
   CONFLICT:
     "Diese Liste wurde anderswo geändert, die Bearbeitung wurde verworfen. Die Ansicht ist jetzt aktuell.",
-  SETTINGS_TASKS_FOLDER: "Name des Aufgabenordners",
-  SETTINGS_TASKS_FOLDER_DESC:
-    "Eine neue Liste bewahrt ihre Aufgaben in einem Ordner mit diesem Namen neben der Listennotiz auf.",
-  SETTINGS_MOVE_FILES: "Notizen zwischen Statusordnern verschieben",
+  SETTINGS_MOVE_FILES: "Notizen bei Statuswechsel verschieben",
   SETTINGS_MOVE_FILES_DESC:
-    "Beim Ändern des Status wird die Notiz auch in den Ordner dieses Status verschoben. Neue Listen starten mit dieser Einstellung.",
+    "Die Notiz folgt ihrem Status in dessen Ordner. Neue Listen starten mit dieser Einstellung.",
   SETTINGS_OPEN_ON_CREATE: "Neue Aufgaben öffnen",
   SETTINGS_OPEN_ON_CREATE_DESC: "Die Notiz öffnen, sobald eine Aufgabe erstellt wurde.",
   SETTINGS_CONFIRM_DELETE: "Vor dem Löschen bestätigen",
   SETTINGS_CONFIRM_DELETE_DESC:
-    "Nachfragen, wenn mehrere Aufgaben in den Papierkorb verschoben werden."
+    "Nachfragen, wenn mehrere Aufgaben in den Papierkorb verschoben werden.",
+  SETTINGS_LANGUAGE: "Sprache",
+  SETTINGS_LANGUAGE_DESC:
+    "TaskList folgt der Sprache von Obsidian, solange hier keine gewählt ist.",
+  SETTINGS_LANGUAGE_SYSTEM: "System",
+  SETTINGS_SEARCH_MODE: "Sucheinstellung",
+  SETTINGS_SEARCH_MODE_DESC: "Automatisch filtert beim Tippen, manuell wartet auf Enter.",
+  SETTINGS_SEARCH_MODE_TYPE: "Automatisch",
+  SETTINGS_SEARCH_MODE_ENTER: "Manuell",
+  SETTINGS_SEARCH_DELAY: "Suchverzögerung (ms)",
+  SETTINGS_SEARCH_DELAY_DESC:
+    "Wartezeit nach dem letzten Tastendruck vor dem Filtern. 1000 ms ist eine Sekunde.",
+  SEARCH_HINT_ENTER: "Zum Suchen Enter drücken",
+  STATUS_TODO: "Zu erledigen",
+  STATUS_COMPLETED: "Erledigt",
+  STATUS_ARCHIVE: "Archiv",
+  STATUS_UNASSIGNED: "Nicht zugewiesen",
+  SEARCH_CLEAR: "Suche löschen",
+  BROWSE: "Durchsuchen",
+  SELECT_FOLDER: "Ordner wählen",
+  VAULT_ROOT: "Tresor-Wurzel",
+  SEARCH_PICK: "Wert wählen…",
+  SETTINGS_STATUS_DOT: "Statusmarkierung",
+  SETTINGS_STATUS_DOT_DESC: "Wie der Statuskreis in jeder Zeile gezeichnet wird.",
+  SETTINGS_STATUS_DOT_OUTLINE: "Umriss",
+  SETTINGS_STATUS_DOT_FILLED: "Gefüllt",
+  BOARD_FOLDER: "Ordner dieser Liste",
+  BOARD_FOLDER_DESC:
+    "Von hier liest diese Liste ihre Aufgaben. Eine Änderung verschiebt vorhandene Notizen nicht.",
+  BOARD_SECTION: "Diese Liste",
+  GLOBAL_SECTION: "Alle Listen"
 };

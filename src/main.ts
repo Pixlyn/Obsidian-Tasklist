@@ -11,15 +11,22 @@ import {
   WorkspaceLeaf
 } from "obsidian";
 import { ensureBoardFolders } from "./core/folder-sync";
-import { t } from "./i18n";
+import { setLanguage, t } from "./i18n";
 import {
   BoardConfig,
   CODE_BLOCK,
   defaultBoardConfig,
   parseBoardConfig,
-  serializeBoardConfig
+  serializeBoardConfig,
+  translateBoardConfig
 } from "./model/board-config";
-import { DEFAULT_SETTINGS, mergeSettings, SettingsStore, TaskListSettings } from "./settings";
+import {
+  DEFAULT_SETTINGS,
+  DEFAULT_TASKS_FOLDER,
+  mergeSettings,
+  SettingsStore,
+  TaskListSettings
+} from "./settings";
 import { closeAllPopovers } from "./ui/popover";
 import { TaskListSettingTab } from "./ui/settings-tab";
 import { BoardRenderer } from "./view/board-renderer";
@@ -35,8 +42,11 @@ import {
 export default class TaskListPlugin extends Plugin implements SettingsStore {
   settings: TaskListSettings = { ...DEFAULT_SETTINGS, collapsed: {} };
 
+  private readonly listeners = new Set<() => void>();
+
   async onload(): Promise<void> {
     this.settings = mergeSettings(await this.loadData());
+    setLanguage(this.settings.language);
 
     this.addSettingTab(new TaskListSettingTab(this));
 
@@ -152,7 +162,14 @@ export default class TaskListPlugin extends Plugin implements SettingsStore {
   }
 
   async saveSettings(): Promise<void> {
+    setLanguage(this.settings.language);
     await this.saveData(this.settings);
+    for (const listener of [...this.listeners]) listener();
+  }
+
+  onSettingsChange(listener: () => void): () => void {
+    this.listeners.add(listener);
+    return () => this.listeners.delete(listener);
   }
 
   private async openAsBoard(leaf: WorkspaceLeaf, file: TFile): Promise<void> {
@@ -184,7 +201,7 @@ export default class TaskListPlugin extends Plugin implements SettingsStore {
 
   private async createBoard(folder: TFolder): Promise<TFile | null> {
     const base = "TaskList";
-    const tasks = this.settings.tasksFolder;
+    const tasks = DEFAULT_TASKS_FOLDER;
     const parent = folder.isRoot() ? "" : `${folder.path}/`;
 
     let suffix = "";
@@ -202,6 +219,7 @@ export default class TaskListPlugin extends Plugin implements SettingsStore {
     const config: BoardConfig = defaultBoardConfig();
     config.folder = `${parent}${tasks}${suffix}`;
     config.moveFiles = this.settings.moveFiles;
+    translateBoardConfig(config);
 
     const body = [
       "---",

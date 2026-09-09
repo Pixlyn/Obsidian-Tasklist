@@ -97,14 +97,40 @@ export const pt: Partial<Record<TranslationKey, string>> = {
   FAILED: "TaskList: {message}",
   CONFLICT:
     "Esta lista mudou em outro lugar, então a edição foi descartada. A visualização já está atualizada.",
-  SETTINGS_TASKS_FOLDER: "Nome da pasta de tarefas",
-  SETTINGS_TASKS_FOLDER_DESC:
-    "Uma nova lista guarda suas tarefas numa pasta com este nome, ao lado da nota da lista.",
-  SETTINGS_MOVE_FILES: "Mover notas entre as pastas de status",
+  SETTINGS_MOVE_FILES: "Mover notas quando o status muda",
   SETTINGS_MOVE_FILES_DESC:
-    "Mudar o status de uma tarefa também move a nota dela para a pasta daquele status. Listas novas começam com esta opção.",
+    "A nota acompanha o status até a pasta correspondente. Listas novas começam com esta opção.",
   SETTINGS_OPEN_ON_CREATE: "Abrir novas tarefas",
   SETTINGS_OPEN_ON_CREATE_DESC: "Abrir a nota assim que a tarefa for criada.",
   SETTINGS_CONFIRM_DELETE: "Confirmar antes de excluir",
-  SETTINGS_CONFIRM_DELETE_DESC: "Perguntar antes quando várias tarefas vão para a lixeira."
+  SETTINGS_CONFIRM_DELETE_DESC: "Perguntar antes quando várias tarefas vão para a lixeira.",
+  SETTINGS_LANGUAGE: "Idioma",
+  SETTINGS_LANGUAGE_DESC: "O TaskList segue o idioma do Obsidian enquanto você não escolher um.",
+  SETTINGS_LANGUAGE_SYSTEM: "Sistema",
+  SETTINGS_SEARCH_MODE: "Preferência de busca",
+  SETTINGS_SEARCH_MODE_DESC: "Automática filtra enquanto você digita; manual espera o Enter.",
+  SETTINGS_SEARCH_MODE_TYPE: "Automática",
+  SETTINGS_SEARCH_MODE_ENTER: "Manual",
+  SETTINGS_SEARCH_DELAY: "Atraso da busca (ms)",
+  SETTINGS_SEARCH_DELAY_DESC:
+    "Quanto esperar após a última tecla antes de filtrar. 1000 ms é um segundo.",
+  SEARCH_HINT_ENTER: "Pressione Enter para buscar",
+  STATUS_TODO: "A fazer",
+  STATUS_COMPLETED: "Concluído",
+  STATUS_ARCHIVE: "Arquivo",
+  STATUS_UNASSIGNED: "Sem atribuição",
+  SEARCH_CLEAR: "Limpar a busca",
+  BROWSE: "Procurar",
+  SELECT_FOLDER: "Escolher pasta",
+  VAULT_ROOT: "Raiz do cofre",
+  SEARCH_PICK: "Escolha um valor…",
+  SETTINGS_STATUS_DOT: "Marcador de status",
+  SETTINGS_STATUS_DOT_DESC: "Como o círculo de status é desenhado em cada linha.",
+  SETTINGS_STATUS_DOT_OUTLINE: "Contorno",
+  SETTINGS_STATUS_DOT_FILLED: "Preenchido",
+  BOARD_FOLDER: "Pasta desta lista",
+  BOARD_FOLDER_DESC:
+    "É daqui que esta lista lê suas tarefas. Mudar não move as notas que já existem.",
+  BOARD_SECTION: "Esta lista",
+  GLOBAL_SECTION: "Todas as listas"
 };

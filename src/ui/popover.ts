@@ -47,7 +47,11 @@ export function openPopover(cls: string, onClose: () => void = () => undefined):
 }
 
 export function placePopover(el: HTMLElement, anchor: HTMLElement): void {
-  const rect = anchor.getBoundingClientRect();
+  placePopoverAt(el, anchor.getBoundingClientRect());
+}
+
+// A redrawing panel reuses its opening rect: a detached anchor reports 0, 0.
+export function placePopoverAt(el: HTMLElement, rect: DOMRect): void {
   const width = el.offsetWidth;
   const height = el.offsetHeight;
 

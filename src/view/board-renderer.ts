@@ -78,7 +78,7 @@ export class BoardRenderer extends MarkdownRenderChild implements BoardHost {
   constructor(
     container: HTMLElement,
     readonly app: App,
-    private readonly store: SettingsStore,
+    readonly store: SettingsStore,
     readonly config: BoardConfig,
     private baseline: string,
     boardPath: string,
@@ -104,6 +104,18 @@ export class BoardRenderer extends MarkdownRenderChild implements BoardHost {
   updateConfig(change: (config: BoardConfig) => void): void {
     change(this.config);
     this.run(() => this.write());
+  }
+
+  changeFolder(folder: string): void {
+    const next = folder.replace(/^\/+|\/+$/g, "");
+    if (next === this.config.folder) return;
+
+    this.config.folder = next;
+    this.run(async () => {
+      await ensureBoardFolders(this.app.vault, this.config);
+      await this.write();
+    });
+    this.scheduleRender();
   }
 
   private followRename(file: TAbstractFile, oldPath: string): boolean {
@@ -183,6 +195,8 @@ export class BoardRenderer extends MarkdownRenderChild implements BoardHost {
   }
 
   onload(): void {
+    this.register(this.store.onSettingsChange(() => this.scheduleRender()));
+
     this.registerEvent(
       this.app.metadataCache.on("changed", (file) => {
         if (this.affects(file)) this.scheduleRender();
@@ -472,7 +486,7 @@ export class BoardRenderer extends MarkdownRenderChild implements BoardHost {
   }
 
   setSearch(state: SearchState): void {
-    this.searchState = { query: state.query, fields: [...state.fields] };
+    this.searchState = { query: state.query, field: state.field };
     this.scheduleRender();
   }
 

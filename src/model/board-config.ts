@@ -1,4 +1,5 @@
 import { parseYaml } from "obsidian";
+import { t } from "../i18n";
 import {
   ColumnKey,
   DEFAULT_COLUMNS,
@@ -147,6 +148,19 @@ export function defaultBoardConfig(): BoardConfig {
     hidden: [...DEFAULT_HIDDEN],
     fields: []
   };
+}
+
+export function translateBoardConfig(config: BoardConfig): void {
+  const statuses = [t("STATUS_TODO"), t("STATUS_COMPLETED")];
+  config.statuses = config.statuses.map((status, index) => ({
+    ...status,
+    name: statuses[index] ?? status.name
+  }));
+
+  config.archive.name = t("STATUS_ARCHIVE");
+  config.archiveFolder = t("STATUS_ARCHIVE");
+  config.unassigned.name = t("STATUS_UNASSIGNED");
+  config.unassignedFolder = t("STATUS_UNASSIGNED");
 }
 
 export function parseBoardConfig(source: string): ParseResult {

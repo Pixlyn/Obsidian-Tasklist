@@ -98,14 +98,41 @@ export const fr: Partial<Record<TranslationKey, string>> = {
   FAILED: "TaskList : {message}",
   CONFLICT:
     "Cette liste a été modifiée ailleurs, la modification a été abandonnée. La vue est à jour.",
-  SETTINGS_TASKS_FOLDER: "Nom du dossier des tâches",
-  SETTINGS_TASKS_FOLDER_DESC:
-    "Une nouvelle liste range ses tâches dans un dossier portant ce nom, à côté de la note de liste.",
-  SETTINGS_MOVE_FILES: "Déplacer les notes entre les dossiers de statut",
+  SETTINGS_MOVE_FILES: "Déplacer les notes au changement de statut",
   SETTINGS_MOVE_FILES_DESC:
-    "Changer le statut d’une tâche déplace aussi sa note dans le dossier de ce statut. Les nouvelles listes démarrent avec ce réglage.",
+    "La note suit son statut dans le dossier correspondant. Les nouvelles listes démarrent avec ce réglage.",
   SETTINGS_OPEN_ON_CREATE: "Ouvrir les nouvelles tâches",
   SETTINGS_OPEN_ON_CREATE_DESC: "Ouvrir la note dès qu’une tâche est créée.",
   SETTINGS_CONFIRM_DELETE: "Confirmer avant de supprimer",
-  SETTINGS_CONFIRM_DELETE_DESC: "Demander d’abord quand plusieurs tâches sont mises à la corbeille."
+  SETTINGS_CONFIRM_DELETE_DESC:
+    "Demander d’abord quand plusieurs tâches sont mises à la corbeille.",
+  SETTINGS_LANGUAGE: "Langue",
+  SETTINGS_LANGUAGE_DESC: "TaskList suit la langue d'Obsidian tant que rien n'est choisi ici.",
+  SETTINGS_LANGUAGE_SYSTEM: "Système",
+  SETTINGS_SEARCH_MODE: "Préférence de recherche",
+  SETTINGS_SEARCH_MODE_DESC: "Automatique filtre pendant la saisie, manuel attend Entrée.",
+  SETTINGS_SEARCH_MODE_TYPE: "Automatique",
+  SETTINGS_SEARCH_MODE_ENTER: "Manuel",
+  SETTINGS_SEARCH_DELAY: "Délai de recherche (ms)",
+  SETTINGS_SEARCH_DELAY_DESC:
+    "Délai après la dernière frappe avant de filtrer. 1000 ms font une seconde.",
+  SEARCH_HINT_ENTER: "Appuyez sur Entrée pour chercher",
+  STATUS_TODO: "À faire",
+  STATUS_COMPLETED: "Terminé",
+  STATUS_ARCHIVE: "Archives",
+  STATUS_UNASSIGNED: "Non assigné",
+  SEARCH_CLEAR: "Effacer la recherche",
+  BROWSE: "Parcourir",
+  SELECT_FOLDER: "Choisir un dossier",
+  VAULT_ROOT: "Racine du coffre",
+  SEARCH_PICK: "Choisir une valeur…",
+  SETTINGS_STATUS_DOT: "Marqueur de statut",
+  SETTINGS_STATUS_DOT_DESC: "Comment le cercle de statut est dessiné sur chaque ligne.",
+  SETTINGS_STATUS_DOT_OUTLINE: "Contour",
+  SETTINGS_STATUS_DOT_FILLED: "Plein",
+  BOARD_FOLDER: "Dossier de cette liste",
+  BOARD_FOLDER_DESC:
+    "C'est d'ici que cette liste lit ses tâches. Le changer ne déplace pas les notes existantes.",
+  BOARD_SECTION: "Cette liste",
+  GLOBAL_SECTION: "Toutes les listes"
 };

@@ -98,14 +98,40 @@ export const es: Partial<Record<TranslationKey, string>> = {
   FAILED: "TaskList: {message}",
   CONFLICT:
     "Esta lista cambió en otro sitio, así que se descartó la edición. La vista ya está al día.",
-  SETTINGS_TASKS_FOLDER: "Nombre de la carpeta de tareas",
-  SETTINGS_TASKS_FOLDER_DESC:
-    "Una lista nueva guarda sus tareas en una carpeta con este nombre, junto a la nota de la lista.",
-  SETTINGS_MOVE_FILES: "Mover notas entre carpetas de estado",
+  SETTINGS_MOVE_FILES: "Mover notas al cambiar el estado",
   SETTINGS_MOVE_FILES_DESC:
-    "Cambiar el estado de una tarea también mueve su nota a la carpeta de ese estado. Las listas nuevas empiezan con este ajuste.",
+    "La nota sigue a su estado hasta la carpeta correspondiente. Las listas nuevas empiezan con este ajuste.",
   SETTINGS_OPEN_ON_CREATE: "Abrir tareas nuevas",
   SETTINGS_OPEN_ON_CREATE_DESC: "Abrir la nota en cuanto se crea una tarea.",
   SETTINGS_CONFIRM_DELETE: "Confirmar antes de eliminar",
-  SETTINGS_CONFIRM_DELETE_DESC: "Preguntar primero cuando varias tareas van a la papelera."
+  SETTINGS_CONFIRM_DELETE_DESC: "Preguntar primero cuando varias tareas van a la papelera.",
+  SETTINGS_LANGUAGE: "Idioma",
+  SETTINGS_LANGUAGE_DESC: "TaskList sigue el idioma de Obsidian mientras no elijas uno aquí.",
+  SETTINGS_LANGUAGE_SYSTEM: "Sistema",
+  SETTINGS_SEARCH_MODE: "Preferencia de búsqueda",
+  SETTINGS_SEARCH_MODE_DESC: "Automática filtra al escribir; manual espera a Enter.",
+  SETTINGS_SEARCH_MODE_TYPE: "Automática",
+  SETTINGS_SEARCH_MODE_ENTER: "Manual",
+  SETTINGS_SEARCH_DELAY: "Retardo de búsqueda (ms)",
+  SETTINGS_SEARCH_DELAY_DESC:
+    "Cuánto esperar tras la última tecla antes de filtrar. 1000 ms es un segundo.",
+  SEARCH_HINT_ENTER: "Pulsa Enter para buscar",
+  STATUS_TODO: "Por hacer",
+  STATUS_COMPLETED: "Completado",
+  STATUS_ARCHIVE: "Archivo",
+  STATUS_UNASSIGNED: "Sin asignar",
+  SEARCH_CLEAR: "Borrar la búsqueda",
+  BROWSE: "Examinar",
+  SELECT_FOLDER: "Elegir carpeta",
+  VAULT_ROOT: "Raíz del baúl",
+  SEARCH_PICK: "Elige un valor…",
+  SETTINGS_STATUS_DOT: "Marca de estado",
+  SETTINGS_STATUS_DOT_DESC: "Cómo se dibuja el círculo de estado en cada fila.",
+  SETTINGS_STATUS_DOT_OUTLINE: "Contorno",
+  SETTINGS_STATUS_DOT_FILLED: "Relleno",
+  BOARD_FOLDER: "Carpeta de esta lista",
+  BOARD_FOLDER_DESC:
+    "De aquí lee sus tareas esta lista. Cambiarla no mueve las notas que ya existen.",
+  BOARD_SECTION: "Esta lista",
+  GLOBAL_SECTION: "Todas las listas"
 };

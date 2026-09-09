@@ -96,14 +96,40 @@ export const ru: Partial<Record<TranslationKey, string>> = {
   FAILED: "TaskList: {message}",
   CONFLICT:
     "Этот список изменили в другом месте, поэтому правка отменена. Представление обновлено.",
-  SETTINGS_TASKS_FOLDER: "Имя папки задач",
-  SETTINGS_TASKS_FOLDER_DESC:
-    "Новый список хранит задачи в папке с этим именем рядом с заметкой списка.",
-  SETTINGS_MOVE_FILES: "Перемещать заметки между папками статусов",
+  SETTINGS_MOVE_FILES: "Переносить заметки при смене статуса",
   SETTINGS_MOVE_FILES_DESC:
-    "При смене статуса заметка задачи перемещается в папку этого статуса. Новые списки начинают с этой настройкой.",
+    "Заметка следует за статусом в его папку. Новые списки начинают с этой настройкой.",
   SETTINGS_OPEN_ON_CREATE: "Открывать новые задачи",
   SETTINGS_OPEN_ON_CREATE_DESC: "Открывать заметку сразу после создания задачи.",
   SETTINGS_CONFIRM_DELETE: "Подтверждать удаление",
-  SETTINGS_CONFIRM_DELETE_DESC: "Спрашивать, когда в корзину отправляют несколько задач."
+  SETTINGS_CONFIRM_DELETE_DESC: "Спрашивать, когда в корзину отправляют несколько задач.",
+  SETTINGS_LANGUAGE: "Язык",
+  SETTINGS_LANGUAGE_DESC: "TaskList следует языку Obsidian, пока вы не выберете язык здесь.",
+  SETTINGS_LANGUAGE_SYSTEM: "Системный",
+  SETTINGS_SEARCH_MODE: "Режим поиска",
+  SETTINGS_SEARCH_MODE_DESC: "Автоматический фильтрует при вводе, ручной ждёт Enter.",
+  SETTINGS_SEARCH_MODE_TYPE: "Автоматический",
+  SETTINGS_SEARCH_MODE_ENTER: "Ручной",
+  SETTINGS_SEARCH_DELAY: "Задержка поиска (мс)",
+  SETTINGS_SEARCH_DELAY_DESC:
+    "Сколько ждать после последнего нажатия перед фильтрацией. 1000 мс — это секунда.",
+  SEARCH_HINT_ENTER: "Нажмите Enter для поиска",
+  STATUS_TODO: "К выполнению",
+  STATUS_COMPLETED: "Выполнено",
+  STATUS_ARCHIVE: "Архив",
+  STATUS_UNASSIGNED: "Без статуса",
+  SEARCH_CLEAR: "Очистить поиск",
+  BROWSE: "Обзор",
+  SELECT_FOLDER: "Выберите папку",
+  VAULT_ROOT: "Корень хранилища",
+  SEARCH_PICK: "Выберите значение…",
+  SETTINGS_STATUS_DOT: "Метка статуса",
+  SETTINGS_STATUS_DOT_DESC: "Как рисуется кружок статуса в строке.",
+  SETTINGS_STATUS_DOT_OUTLINE: "Контур",
+  SETTINGS_STATUS_DOT_FILLED: "Заливка",
+  BOARD_FOLDER: "Папка этого списка",
+  BOARD_FOLDER_DESC:
+    "Отсюда список читает свои задачи. Смена папки не переносит уже созданные заметки.",
+  BOARD_SECTION: "Этот список",
+  GLOBAL_SECTION: "Все списки"
 };

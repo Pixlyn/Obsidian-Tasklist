@@ -1,48 +1,67 @@
-import { t } from "../i18n";
 import { TranslationKey } from "../i18n/en";
-import { findPriority } from "./priority";
 import { TaskGroup, TaskItem } from "./task";
 
-export type SearchField = "name" | "tags" | "status" | "priority" | "due";
+export type SearchField = "name" | "tags" | "status" | "priority" | "due" | "created";
 
-export const SEARCH_FIELDS: SearchField[] = ["name", "tags", "status", "priority", "due"];
+export const SEARCH_FIELDS: SearchField[] = [
+  "name",
+  "tags",
+  "status",
+  "priority",
+  "due",
+  "created"
+];
 
 export const SEARCH_LABELS: Record<SearchField, TranslationKey> = {
   name: "COLUMN_NAME",
   tags: "TAGS",
   status: "COLUMN_STATUS",
   priority: "PRIORITY",
-  due: "DUE_DATE"
+  due: "DUE_DATE",
+  created: "COLUMN_CREATED"
+};
+
+export const SEARCH_ICONS: Record<SearchField, string> = {
+  name: "type",
+  tags: "tag",
+  status: "circle",
+  priority: "flag",
+  due: "calendar",
+  created: "calendar-plus"
 };
 
 export interface SearchState {
   query: string;
-  fields: SearchField[];
+  field: SearchField;
 }
 
 export function defaultSearch(): SearchState {
-  return { query: "", fields: ["name"] };
+  return { query: "", field: "name" };
 }
 
 export function isSearching(state: SearchState): boolean {
-  return state.query.trim().length > 0 && state.fields.length > 0;
+  return state.query.trim().length > 0;
 }
 
-function valueOf(task: TaskItem, field: SearchField): string {
-  if (field === "name") return task.title;
-  if (field === "tags") return task.tags.join(" ");
-  if (field === "status") return task.status;
-  if (field === "due") return task.due;
+export function isTextField(field: SearchField): boolean {
+  return field === "name";
+}
 
-  const priority = task.priority === null ? null : findPriority(task.priority);
-  return priority === null ? "" : `${priority.key} ${t(priority.label)}`;
+export function isDateField(field: SearchField): boolean {
+  return field === "due" || field === "created";
 }
 
 export function matchesSearch(task: TaskItem, state: SearchState): boolean {
   const query = state.query.trim().toLowerCase();
   if (query.length === 0) return true;
 
-  return state.fields.some((field) => valueOf(task, field).toLowerCase().includes(query));
+  if (state.field === "name") return task.title.toLowerCase().includes(query);
+  if (state.field === "tags") return task.tags.some((tag) => tag.toLowerCase() === query);
+  if (state.field === "status") return task.status.toLowerCase() === query;
+  if (state.field === "due") return task.due === query;
+  if (state.field === "created") return task.created === query;
+
+  return task.priority !== null && task.priority === query;
 }
 
 export function filterGroups(groups: TaskGroup[], state: SearchState): TaskGroup[] {

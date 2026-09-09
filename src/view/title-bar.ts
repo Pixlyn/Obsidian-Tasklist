@@ -1,12 +1,11 @@
 import { setIcon } from "obsidian";
 import { t } from "../i18n";
-import { isSearching } from "../model/search";
 import { STATUS_PALETTE } from "../model/status";
 import { BoardSettingsModal } from "../ui/board-settings-modal";
 import { openColorPopover } from "../ui/color-popover";
-import { openSearchBox } from "../ui/search-box";
 import { ManagerModal, ManagerTab } from "../ui/manager-modal";
 import { BoardHost } from "./board-host";
+import { renderSearch } from "./search-bar";
 
 function editInline(
   label: HTMLElement,
@@ -111,15 +110,8 @@ export function renderTitleBar(parent: HTMLElement, host: BoardHost): void {
 
   const actions = bar.createDiv({ cls: "tl-title-actions" });
 
-  const search = actions.createEl("button", {
-    cls: "tl-btn tl-icon-only",
-    attr: { title: t("SEARCH") }
-  });
-  setIcon(search, "search");
-  if (isSearching(host.search())) search.addClass("is-active");
-  search.addEventListener("click", () => {
-    openSearchBox(search, host.search(), (next) => host.setSearch(next));
-  });
+  const search = actions.createDiv({ cls: "tl-search-slot" });
+  renderSearch(search, host);
 
   const quick = actions.createEl("button", { cls: "tl-btn" });
   setIcon(quick.createSpan(), "plus");
@@ -166,7 +158,7 @@ export function renderTitleBar(parent: HTMLElement, host: BoardHost): void {
   });
   setIcon(settings, "settings");
   settings.addEventListener("click", () => {
-    new BoardSettingsModal(host.app, host).open();
+    new BoardSettingsModal(host).open();
   });
 }
 

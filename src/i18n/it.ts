@@ -97,14 +97,40 @@ export const it: Partial<Record<TranslationKey, string>> = {
   FAILED: "TaskList: {message}",
   CONFLICT:
     "Questo elenco è cambiato altrove, quindi la modifica è stata scartata. La vista è aggiornata.",
-  SETTINGS_TASKS_FOLDER: "Nome della cartella delle attività",
-  SETTINGS_TASKS_FOLDER_DESC:
-    "Un nuovo elenco tiene le sue attività in una cartella con questo nome, accanto alla nota dell’elenco.",
-  SETTINGS_MOVE_FILES: "Sposta le note tra le cartelle di stato",
+  SETTINGS_MOVE_FILES: "Sposta le note al cambio di stato",
   SETTINGS_MOVE_FILES_DESC:
-    "Cambiare lo stato di un’attività sposta anche la sua nota nella cartella di quello stato. I nuovi elenchi partono con questa impostazione.",
+    "La nota segue il suo stato nella cartella corrispondente. Le nuove liste partono con questa impostazione.",
   SETTINGS_OPEN_ON_CREATE: "Apri le nuove attività",
   SETTINGS_OPEN_ON_CREATE_DESC: "Apri la nota appena l’attività viene creata.",
   SETTINGS_CONFIRM_DELETE: "Conferma prima di eliminare",
-  SETTINGS_CONFIRM_DELETE_DESC: "Chiedi prima quando più attività finiscono nel cestino."
+  SETTINGS_CONFIRM_DELETE_DESC: "Chiedi prima quando più attività finiscono nel cestino.",
+  SETTINGS_LANGUAGE: "Lingua",
+  SETTINGS_LANGUAGE_DESC: "TaskList segue la lingua di Obsidian finché non ne scegli una qui.",
+  SETTINGS_LANGUAGE_SYSTEM: "Sistema",
+  SETTINGS_SEARCH_MODE: "Preferenza di ricerca",
+  SETTINGS_SEARCH_MODE_DESC: "Automatica filtra mentre scrivi, manuale aspetta Invio.",
+  SETTINGS_SEARCH_MODE_TYPE: "Automatica",
+  SETTINGS_SEARCH_MODE_ENTER: "Manuale",
+  SETTINGS_SEARCH_DELAY: "Ritardo di ricerca (ms)",
+  SETTINGS_SEARCH_DELAY_DESC:
+    "Quanto attendere dopo l'ultimo tasto prima di filtrare. 1000 ms è un secondo.",
+  SEARCH_HINT_ENTER: "Premi Invio per cercare",
+  STATUS_TODO: "Da fare",
+  STATUS_COMPLETED: "Completato",
+  STATUS_ARCHIVE: "Archivio",
+  STATUS_UNASSIGNED: "Non assegnato",
+  SEARCH_CLEAR: "Cancella la ricerca",
+  BROWSE: "Sfoglia",
+  SELECT_FOLDER: "Scegli una cartella",
+  VAULT_ROOT: "Radice del vault",
+  SEARCH_PICK: "Scegli un valore…",
+  SETTINGS_STATUS_DOT: "Indicatore di stato",
+  SETTINGS_STATUS_DOT_DESC: "Come viene disegnato il cerchio di stato su ogni riga.",
+  SETTINGS_STATUS_DOT_OUTLINE: "Contorno",
+  SETTINGS_STATUS_DOT_FILLED: "Pieno",
+  BOARD_FOLDER: "Cartella di questa lista",
+  BOARD_FOLDER_DESC:
+    "Da qui questa lista legge le sue attività. Cambiarla non sposta le note già presenti.",
+  BOARD_SECTION: "Questa lista",
+  GLOBAL_SECTION: "Tutte le liste"
 };

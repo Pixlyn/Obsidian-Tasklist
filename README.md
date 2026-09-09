@@ -21,10 +21,11 @@ proprietary database.
 - **Custom fields** — add your own columns of type `text`, `number`, `date`, `time` or
   `toggle`; each is stored as a frontmatter property.
 - **Tags & priority** — colored tags, and four priority levels (urgent / high / normal / low).
-- **Search** — filter tasks by name, tag and field values.
+- **Search** — pick a field and the input follows it: free text for the name, a colored
+  list for tags, status and priority, a date picker for due and created dates.
 - **Bulk actions** — multi-select rows to change status or delete in one step.
-- **12 languages** — ar, de, en, es, fr, it, ja, ko, pt, ru, tr, zh (follows Obsidian's
-  language setting).
+- **12 languages** — ar, de, en, es, fr, it, ja, ko, pt, ru, tr, zh. Follows Obsidian's
+  language by default, or pick one in the settings.
 
 ## Installation
 
@@ -101,14 +102,24 @@ Dataview or any other plugin.
 
 ## Settings
 
-| Setting        | Description                                         |
-| -------------- | --------------------------------------------------- |
-| Tasks folder   | Default folder name used when creating a new board. |
-| Move files     | Default value of `moveFiles` for new boards.        |
-| Open on create | Open the note right after a task is created.        |
-| Confirm delete | Ask before deleting tasks.                          |
-| Keep adding    | Keep the inline add row open after saving a task.   |
-| Column width   | Default column width (100–480 px).                  |
+The gear in the board's title bar and _Settings → TaskList_ show the same preferences,
+and both save immediately.
+
+| Setting           | Description                                                              |
+| ----------------- | ------------------------------------------------------------------------ |
+| Language          | Follows Obsidian by default; any of the 12 languages can be forced.      |
+| Task folder       | Where new lists keep their tasks, picked with **Browse**.                |
+| Move notes        | Whether a note follows its status into that status's folder (new lists). |
+| Open new tasks    | Open the note right after a task is created.                             |
+| Confirm delete    | Ask before deleting tasks.                                               |
+| Keep adding       | Keep the inline add row open after saving a task.                        |
+| Status marker     | Draw the status circle as an outline or filled, with a live preview.     |
+| Search preference | Automatic (as you type) or manual (on Enter).                            |
+| Search delay      | Pause after the last keystroke before filtering, in ms (default 1000).   |
+
+The board gear also carries one board-only setting, **This list's folder**: it points the
+list at another folder without moving the notes that are already there. A new list always
+starts with a `Tasks` folder beside its note.
 
 ## Development
 

@@ -25,6 +25,8 @@ function renderAddLine(parent: HTMLElement, host: BoardHost, group: TaskGroup): 
     placeholder: t("NEW_TASK_PLACEHOLDER")
   });
 
+  let done = false;
+
   const submit = (): void => {
     const title = input.value.trim();
     input.value = "";
@@ -33,9 +35,15 @@ function renderAddLine(parent: HTMLElement, host: BoardHost, group: TaskGroup): 
       return;
     }
 
+    done = true;
     // Only stays open when the settings menu asked for it.
     if (!host.keepAdding()) host.pendingAdd = null;
     host.addTask(group, title);
+  };
+
+  const dismiss = (): void => {
+    done = true;
+    host.setPendingAdd(null);
   };
 
   input.addEventListener("keydown", (event) => {
@@ -44,8 +52,14 @@ function renderAddLine(parent: HTMLElement, host: BoardHost, group: TaskGroup): 
       submit();
     } else if (event.key === "Escape") {
       event.preventDefault();
-      host.setPendingAdd(null);
+      dismiss();
     }
+  });
+
+  input.addEventListener("blur", () => {
+    if (done) return;
+    if (input.value.trim().length === 0) dismiss();
+    else submit();
   });
 
   const confirm = form.createEl("button", { cls: "tl-icon-btn tl-confirm" });
@@ -61,7 +75,7 @@ function renderAddLine(parent: HTMLElement, host: BoardHost, group: TaskGroup): 
   setIcon(cancel, "x");
   cancel.addEventListener("pointerdown", (event) => {
     event.preventDefault();
-    host.setPendingAdd(null);
+    dismiss();
   });
 
   window.setTimeout(() => input.focus(), 0);

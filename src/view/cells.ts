@@ -39,6 +39,10 @@ function renderStatus(row: HTMLElement, host: BoardHost, task: TaskItem): void {
   const dot = cell(row, "status").createEl("button", { cls: "tl-dot" });
   dot.type = "button";
   dot.style.borderColor = status.color;
+  if (host.store.settings.statusDot === "filled") {
+    dot.addClass("is-filled");
+    dot.style.background = status.color;
+  }
   dot.setAttribute("aria-label", status.name);
   if (status.name === host.config.unassigned.name) dot.addClass("is-unassigned");
 
