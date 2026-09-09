@@ -4,8 +4,7 @@ Status-grouped task board for [Obsidian](https://obsidian.md). Every task is a p
 markdown note; the board is just a view over a folder, so nothing is locked into a
 proprietary database.
 
-<img width="1919" height="995" alt="image" src="https://github.com/user-attachments/assets/265664a0-43c0-48d7-b164-1f8559f7fcc2" />
-
+<img width="1919" height="987" alt="image" src="https://github.com/user-attachments/assets/604b7cbd-9014-4714-8f7f-f51e332dcdc5" />
 
 ## Features
 
